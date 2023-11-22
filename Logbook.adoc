@@ -6,9 +6,9 @@
 
 == Entry 1:
 
+* *Project Name*: [Project Manager]
 * *Date*: [15/10/2023]
 * *Work-Time*: [4u 30min]
-* *Project Name*: [Project Manager]
 
 *[TODO]* - Maken/Opstellen van het code project
 
@@ -18,12 +18,136 @@
 
 == Entry 2:
 
-* *Date*: [Date]
-* *Work-Time*: [Time]
 * *Project Name*: [Project Manager]
+* *Date*: [18/10/2023]
+* *Work-Time*: [1u 45min]
 
-*[TODO]* - Summarize your progress since the last entry.
+*[TODO]* - Vue Introduction
 
-*[TODO]* - Detail any challenges or roadblocks you encountered and how you overcame them.
+*[TODO]* - Get started with Vue
 
-*[TODO]* - Mention any code or resources you started working on and their status.
+*[TODO]* - Using loops to generate content
+
+*[TODO]* - Binding data to attributes
+
+*[TODO]* - Setting up events
+
+== Entry 3:
+
+* *Project Name*: [Project Manager]
+* *Date*: [05/11/2023]
+* *Work-Time*: [2u 35min]
+
+*[TODO]* - Binding CSS classes 1
+
+*[TODO]* - Using computed properties
+
+*[TODO]* - Binding CSS classes 2
+
+*[TODO]* - Introducing components
+
+*[TODO]* - Understanding data flow
+
+*[TODO]* - Getting started with the VUE CLI
+
+*[TODO]* - Starting a project from scratch
+
+*[TODO]* - Applying CSS to components
+
+== Entry 4:
+* *Project Name*: [Project Manager]
+* *Date*: [06/11/2023]
+* *Work-Time*: [2u 55min]
+
+*[TODO]* - Using the created() lifecycle Event to load data
+
+*[TODO]* - Working With Unset Props
+
+*[TODO]* - Deciding When to Load Data
+
+*[TODO]* - Working With Forms
+
+*[TODO]* - Validating Forms
+
+*[TODO]* - Updating and Filtering Data
+
+*[TODO]* - Using Watchers
+
+== Entry 5:
+* *Project Name*: [Project Manager]
+* *Date*: [12/11/2023]
+* *Work-Time*: [1u 50min]
+
+*[TODO]* - Creating Custom Events
+
+*[TODO]* -  Writing a Global Event Bus
+
+== Entry 6:
+* *Project Name*: [Project Manager]
+* *Date*: [12/11/2023]
+* *Work-Time*: [2u 15min]
+
+*[TODO]* - Introducing Vue Router
+
+*[TODO]* -  Using Route Params
+
+*[TODO]* - Loading Data for Views
+
+*[TODO]* -  Watching Params to Reload Data
+
+*[TODO]* - Using the Router's Active Class
+
+*[TODO]* -  Nesting Routes
+
+== Entry 7:
+* *Project Name*: [Project Manager]
+* *Date*: [15/11/2023]
+* *Work-Time*: [2u 45min]
+
+*[TODO]* - Introducing the Composition API
+
+*[TODO]* -  Providing and Injecting Dependencies Into Components
+
+*[TODO]* - Accessing Props and Router Functions
+
+*[TODO]* -  Binding Data and Working Wth Forms
+
+*[TODO]* - Defining Computed and Watched Values
+
+*[TODO]* -  Implementing the Delete Functionality
+
+== Entry 8:
+* *Project Name*: [Project Manager]
+* *Date*: [18/11/2023]
+* *Work-Time*: [1u 50min]
+
+*[TODO]* - Electron (maken van een kleine desktop app)
+
+== Entry 9:
+* *Project Name*: [Project Manager]
+* *Date*: [18/11/2023]
+* *Work-Time*: [2u 35min]
+
+*[TODO]* - Tailwind CSS
+
+
+== Entry 10:
+// hier moet nog tijd bij komen en de tijd moet dan ook nog opgeteld worden bij de totale tijd
+* *Project Name*: [Project Manager]
+* *Date*: [12/11/2023]
+* *Work-Time*: [6u 55min]
+
+*[TODO]* - Ontwerpen van de schermen voor de applicatie
+
+== Entry 11:
+// hier moet nog tijd bij komen en de tijd moet dan ook nog opgeteld worden bij de totale tijd
+* *Project Name*: [Project Manager]
+* *Date*: [12/11/2023]
+* *Work-Time*: [4u 35min]
+
+*[TODO]* - DataLaag (Entity Framework)
+
+== Total working hours
+
+* *Project Name*: [Project Manager]
+* *Work-Time*: [23u 00min]

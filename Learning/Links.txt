@@ -1,0 +1,11 @@
+Vue.js:
+https://vuejs.org/
+https://www.youtube.com/watch?v=1GNsWa_EZdw&ab_channel=EnvatoTuts%2B
+
+TailwindCss:
+https://tailwindcss.com/
+https://www.youtube.com/playlist?list=PL4cUxeGkcC9gpXORlEHjc5bgnIi5HEGhw
+
+Electron:
+https://www.electronjs.org/
+https://www.youtube.com/watch?v=3yqDxhR2XxE&ab_channel=Fireship
