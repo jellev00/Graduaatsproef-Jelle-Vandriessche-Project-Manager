@@ -11,7 +11,28 @@ namespace ProjectManager.EF.Models
 {
     public class UserEF
     {
+        public UserEF()
+        {
+            // Default constructor
+        }
+
+        public UserEF(string name, string email, string password)
+        {
+            Name = name;
+            Email = email;
+            Password = password;
+        }
+
+        public UserEF(int user_ID, string name, string email, string password)
+        {
+            User_ID = user_ID;
+            Name = name;
+            Email = email;
+            Password = password;
+        }
+
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int User_ID { get; set; }
 
         [Required]

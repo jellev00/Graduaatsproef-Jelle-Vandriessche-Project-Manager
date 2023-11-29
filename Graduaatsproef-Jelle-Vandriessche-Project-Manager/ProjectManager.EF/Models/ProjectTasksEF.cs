@@ -10,7 +10,25 @@ namespace ProjectManager.EF.Models
 {
     public class ProjectTasksEF
     {
+        public ProjectTasksEF()
+        {
+        }
+
+        public ProjectTasksEF(int project_ID, string task_Description)
+        {
+            Project_ID = project_ID;
+            Task_Description = task_Description;
+        }
+
+        public ProjectTasksEF(int project_Task_ID, int project_ID, string task_Description)
+        {
+            Project_Task_ID = project_Task_ID;
+            Project_ID = project_ID;
+            Task_Description = task_Description;
+        }
+
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Project_Task_ID { get; set; }
 
         [ForeignKey("project")]

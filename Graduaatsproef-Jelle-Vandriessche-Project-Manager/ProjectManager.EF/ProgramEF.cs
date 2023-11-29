@@ -22,13 +22,13 @@ namespace ProjectManager.EF
             Console.WriteLine("CREATE DB");
             Console.ForegroundColor = ConsoleColor.White;
             ctx.Database.EnsureCreated();
-            ctx.SeedData();
+            //ctx.SeedData();
 
-            Console.WriteLine("-------------------------------------------");
+            //Console.WriteLine("-------------------------------------------");
 
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Read DB");
-            Console.ForegroundColor = ConsoleColor.White;
+            //Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.WriteLine("Read DB");
+            //Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

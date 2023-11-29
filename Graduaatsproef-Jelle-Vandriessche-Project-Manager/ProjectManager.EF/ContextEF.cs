@@ -50,38 +50,5 @@ namespace ProjectManager.EF
                 .WithMany(u => u.Projects)
                 .HasForeignKey(p => p.User_ID);
         }
-
-        public void SeedData()
-        {
-            // Add some dummy data here
-            var user1 = new UserEF { Name = "Jelle Vandriessche", Email = "jelle.vandriessche@gmail.com", Password = "Root1234" };
-            var user2 = new UserEF { Name = "John Doe", Email = "john.doe@example.com", Password = "password1" };
-
-            Users.AddRange(user1, user2);
-
-            var project1 = new ProjectsEF { Name = "Project A", Description = "Description for Project A", user = user1 };
-            var project2 = new ProjectsEF { Name = "Project B", Description = "Description for Project B", user = user2 };
-
-            Projects.AddRange(project1, project2);
-
-            var task1 = new UserTasksEF { Task_Description = "Task 1 for John Doe", user = user1 };
-            var task2 = new UserTasksEF { Task_Description = "Task 2 for John Doe", user = user1 };
-            var task3 = new UserTasksEF { Task_Description = "Task 1 for Jane Doe", user = user2 };
-
-            UserTasks.AddRange(task1, task2, task3);
-
-            var projectTask1 = new ProjectTasksEF { Task_Description = "Task 1 for Project A", project = project1 };
-            var projectTask2 = new ProjectTasksEF { Task_Description = "Task 2 for Project A", project = project1 };
-            var projectTask3 = new ProjectTasksEF { Task_Description = "Task 1 for Project B", project = project2 };
-
-            ProjectTasks.AddRange(projectTask1, projectTask2, projectTask3);
-
-            var calendar1 = new ProjectCalendarEF { Name = "Calendar for Project A", Description = "Calendar Description", Date = DateTime.Now, project = project1 };
-            var calendar2 = new ProjectCalendarEF { Name = "Calendar for Project B", Description = "Calendar Description", Date = DateTime.Now, project = project2 };
-
-            ProjectCalendar.AddRange(calendar1, calendar2);
-
-            SaveChanges();
-        }
     }
 }

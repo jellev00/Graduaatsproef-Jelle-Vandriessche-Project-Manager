@@ -782,6 +782,16 @@
             "rid": "win"
           }
         }
+      },
+      "ProjectManager.BL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ProjectManager.BL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ProjectManager.BL.dll": {}
+        }
       }
     }
   },
@@ -2003,12 +2013,18 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "ProjectManager.BL/1.0.0": {
+      "type": "project",
+      "path": "../ProjectManager.BL/ProjectManager.BL.csproj",
+      "msbuildProject": "../ProjectManager.BL/ProjectManager.BL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.25",
-      "Microsoft.EntityFrameworkCore.Tools >= 6.0.25"
+      "Microsoft.EntityFrameworkCore.Tools >= 6.0.25",
+      "ProjectManager.BL >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2037,7 +2053,11 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Hogent\\Semester_3\\Graduaatsproef\\Graduaatsproef-Jelle-Vandriessche-Project-Manager\\ProjectManager.BL\\ProjectManager.BL.csproj": {
+              "projectPath": "D:\\Hogent\\Semester_3\\Graduaatsproef\\Graduaatsproef-Jelle-Vandriessche-Project-Manager\\ProjectManager.BL\\ProjectManager.BL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

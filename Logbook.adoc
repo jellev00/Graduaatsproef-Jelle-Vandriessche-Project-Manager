@@ -147,6 +147,16 @@
 
 *[TODO]* - DataLaag (Entity Framework)
 
+== Entry 12:
+// hier moet nog tijd bij komen en de tijd moet dan ook nog opgeteld worden bij de totale tijd
+* *Project Name*: [Project Manager]
+* *Date*: [12/11/2023]
+* *Work-Time*: [5u 20min]
+
+*[TODO]* - DataLaag (Entity Framework)
+
+*[TODO]* - BusinessLaag
+
 == Total working hours
 
 * *Project Name*: [Project Manager]

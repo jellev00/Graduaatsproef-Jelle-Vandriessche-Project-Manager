@@ -10,7 +10,27 @@ namespace ProjectManager.EF.Models
 {
     public class ProjectsEF
     {
+        public ProjectsEF()
+        {
+        }
+
+        public ProjectsEF(int user_ID, string name, string description)
+        {
+            User_ID = user_ID;
+            Name = name;
+            Description = description;
+        }
+
+        public ProjectsEF(int project_ID, int user_ID, string name, string description)
+        {
+            Project_ID = project_ID;
+            User_ID = user_ID;
+            Name = name;
+            Description = description;
+        }
+
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Project_ID { get; set; }
 
         [ForeignKey("user")]

@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.API", "Proje
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.BL", "ProjectManager.BL\ProjectManager.BL.csproj", "{DA565954-AE4E-4BC6-B506-4B319973587A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManager.EF", "ProjectManager.EF\ProjectManager.EF.csproj", "{33277FF7-71F7-45FD-9955-4AB4FEDBDC93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManager.EF", "ProjectManager.EF\ProjectManager.EF.csproj", "{33277FF7-71F7-45FD-9955-4AB4FEDBDC93}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFDatalayerProvider", "EFDatalayerProvider\EFDatalayerProvider.csproj", "{3CF35B85-7A98-495D-976E-B8B5599FCFF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test_UI", "Test_UI\Test_UI.csproj", "{FD9F1273-A0DB-42AE-9194-99E93EDFE6E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,14 @@ Global
 		{33277FF7-71F7-45FD-9955-4AB4FEDBDC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33277FF7-71F7-45FD-9955-4AB4FEDBDC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33277FF7-71F7-45FD-9955-4AB4FEDBDC93}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF35B85-7A98-495D-976E-B8B5599FCFF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF35B85-7A98-495D-976E-B8B5599FCFF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF35B85-7A98-495D-976E-B8B5599FCFF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF35B85-7A98-495D-976E-B8B5599FCFF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD9F1273-A0DB-42AE-9194-99E93EDFE6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD9F1273-A0DB-42AE-9194-99E93EDFE6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD9F1273-A0DB-42AE-9194-99E93EDFE6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD9F1273-A0DB-42AE-9194-99E93EDFE6E2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
