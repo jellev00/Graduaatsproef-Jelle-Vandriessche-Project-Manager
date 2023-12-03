@@ -15,7 +15,7 @@ namespace ProjectManager.EF.Mapper
         {
             try
             {
-                return new User(db.User_ID, db.Name, db.Email, db.Password);
+                return new User(db.User_ID, db.First_Name, db.Last_Name, db.Email, db.Password);
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace ProjectManager.EF.Mapper
         {
             try
             {
-                return new UserEF(u.Name, u.Email, u.Password);
+                return new UserEF(u.First_Name, u.Last_Name, u.Email, u.Password);
             }
             catch (Exception ex)
             {

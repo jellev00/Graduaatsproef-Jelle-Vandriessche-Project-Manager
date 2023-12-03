@@ -9,23 +9,21 @@ namespace ProjectManager.BL.Models
 {
     public class Project
     {
-        public Project()
-        {
-        }
-
-        public Project(int userId, string name, string description)
+        public Project(int userId, string name, string description, string color)
         {
             _userId = userId;
             _name = name;
             _description = description;
+            _color = color;
         }
 
-        public Project(int projectId, int userId, string name, string description)
+        public Project(int projectId, int userId, string name, string description, string color)
         {
             _projectId = projectId;
             _userId = userId;
             _name = name;
             _description = description;
+            _color = color;
         }
 
         private int _projectId;
@@ -95,6 +93,26 @@ namespace ProjectManager.BL.Models
                 } else
                 {
                     _description = value;
+                }
+            }
+        }
+
+        private string _color;
+        public string Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ProjectsException("Color is invalid!");
+                }
+                else
+                {
+                    _color = value;
                 }
             }
         }

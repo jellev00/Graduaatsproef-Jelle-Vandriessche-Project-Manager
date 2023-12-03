@@ -17,12 +17,12 @@ namespace ProjectManager.API.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("{userName}")]
-        public ActionResult<User> GetUserByName(string userName)
+        [HttpGet("{Email}")]
+        public ActionResult<User> GetUserByEmail(string Email)
         {
             try
             {
-                User users = _userManager.GetUserByName(userName);
+                User users = _userManager.GetUserByEmail(Email);
                 return Ok(users);
             }
             catch (Exception ex)
@@ -36,12 +36,12 @@ namespace ProjectManager.API.Controllers
         {
             try
             {
-                var user = new User(userDTO.Name, userDTO.Email, userDTO.Password);
+                var user = new User(userDTO.First_Name, userDTO.Last_Name, userDTO.Email, userDTO.Password);
                 _userManager.AddUser(user);
 
-                var createdUserDTO = new UserDTO(user.Name, user.Email, user.Password);
+                var createdUserDTO = new UserDTO(user.First_Name, user.Last_Name, user.Email, user.Password);
 
-                return CreatedAtAction(nameof(GetUserByName), new { userName = user.Name }, createdUserDTO);
+                return CreatedAtAction(nameof(GetUserByEmail), new { Email = user.Email }, createdUserDTO);
             }
             catch (Exception ex)
             {
@@ -49,18 +49,18 @@ namespace ProjectManager.API.Controllers
             }
         }
 
-        [HttpDelete("{userName}")]
-        public ActionResult DeleteUser(string userName)
+        [HttpDelete("{Email}")]
+        public ActionResult DeleteUser(string Email)
         {
             try
             {
-                if (!_userManager.UserExists(userName))
+                if (!_userManager.UserExistsEmail(Email))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    _userManager.DeleteUser(userName);
+                    _userManager.DeleteUser(Email);
                     return NoContent();
                 }
             }

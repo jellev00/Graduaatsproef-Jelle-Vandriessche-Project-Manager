@@ -16,17 +16,19 @@ namespace ProjectManager.EF.Models
             // Default constructor
         }
 
-        public UserEF(string name, string email, string password)
+        public UserEF(string first_name, string last_name, string email, string password)
         {
-            Name = name;
+            First_Name = first_name;
+            Last_Name = last_name;
             Email = email;
             Password = password;
         }
 
-        public UserEF(int user_ID, string name, string email, string password)
+        public UserEF(int user_ID, string first_name, string last_name, string email, string password)
         {
             User_ID = user_ID;
-            Name = name;
+            First_Name = first_name;
+            Last_Name = last_name;
             Email = email;
             Password = password;
         }
@@ -37,7 +39,11 @@ namespace ProjectManager.EF.Models
 
         [Required]
         [Column(TypeName = "varchar(100)")]
-        public string Name { get; set; }
+        public string First_Name { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(100)")]
+        public string Last_Name { get; set; }
 
         [Required]
         [Column(TypeName = "varchar(500)")]

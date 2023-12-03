@@ -10,9 +10,11 @@ namespace ProjectManager.BL.Interfaces
     public interface IUserRepo
     {
         User GetUser(int userId);
-        User GetUserByName(string userName);
+        User GetUserByEmail(string Email);
         void AddUser(User user);
-        void DeleteUser(string userName);
-        bool UserExists(string userName);
+        void DeleteUser(string Email);
+        bool UserExistsEmail(string Email);
+        bool UserExistsID(int userId);
+
     }
 }

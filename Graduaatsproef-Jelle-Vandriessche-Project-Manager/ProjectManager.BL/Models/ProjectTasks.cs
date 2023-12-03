@@ -9,17 +9,21 @@ namespace ProjectManager.BL.Models
 {
     public class ProjectTasks
     {
-        public ProjectTasks(int projectId, string taskDescription)
+        public ProjectTasks(int projectId, string taskName, string taskDescription, string color)
         {
             _projectId = projectId;
+            _taskName = taskName;
             _taskDescription = taskDescription;
+            _color = color;
         }
 
-        public ProjectTasks(int taskId, int projectId, string taskDescription)
+        public ProjectTasks(int taskId, int projectId, string taskName, string taskDescription, string color)
         {
             _taskId = taskId;
             _projectId = projectId;
+            _taskName = taskName;
             _taskDescription = taskDescription;
+            _color = color;
         }
 
         private int _taskId;
@@ -51,6 +55,26 @@ namespace ProjectManager.BL.Models
             }
         }
 
+        private string _taskName;
+        public string TaskName
+        {
+            get
+            {
+                return _taskName;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ProjectTasksException("TaskName is invalid!");
+                }
+                else
+                {
+                    _taskName = value;
+                }
+            }
+        }
+
         private string _taskDescription;
         public string TaskDescription
         {
@@ -67,6 +91,26 @@ namespace ProjectManager.BL.Models
                 else
                 {
                     _taskDescription = value;
+                }
+            }
+        }
+
+        private string _color;
+        public string Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ProjectTasksException("Color is invalid!");
+                }
+                else
+                {
+                    _color = value;
                 }
             }
         }

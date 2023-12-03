@@ -39,15 +39,27 @@ namespace ProjectManager.EF.Repositories
             }
         }
 
-        public bool UserExists(string userName)
+        public bool UserExistsEmail(string Email)
         {
             try
             {
-                return ctx.Users.Any(x => x.Name == userName);
+                return ctx.Users.Any(x => x.Email == Email);
             }
             catch (Exception ex)
             {
-                throw new RepoUserEFException("UserExists", ex);
+                throw new RepoUserEFException("UserExistsEmail", ex);
+            }
+        }
+
+        public bool UserExistsID(int userId)
+        {
+            try
+            {
+                return ctx.Users.Any(x => x.User_ID == userId);
+            }
+            catch (Exception ex)
+            {
+                throw new RepoUserEFException("UserExistsID", ex);
             }
         }
 
@@ -62,22 +74,22 @@ namespace ProjectManager.EF.Repositories
             }
         }
 
-        public User GetUserByName(string userName)
+        public User GetUserByEmail(string Email)
         {
             try
             {
-                return MapUserEF.MapToDomain(ctx.Users.Where(x => x.Name == userName).AsNoTracking().FirstOrDefault());
+                return MapUserEF.MapToDomain(ctx.Users.Where(x => x.Email == Email).AsNoTracking().FirstOrDefault());
             } catch (Exception ex)
             {
-                throw new RepoUserEFException("GetUserByName", ex);
+                throw new RepoUserEFException("GetUserByEmail", ex);
             }
         }
 
-        public void DeleteUser(string userName)
+        public void DeleteUser(string Email)
         {
             try
             {
-                var userToDelete = ctx.Users.SingleOrDefault(x => x.Name == userName);
+                var userToDelete = ctx.Users.SingleOrDefault(x => x.Email == Email);
 
                 if (userToDelete != null)
                 {

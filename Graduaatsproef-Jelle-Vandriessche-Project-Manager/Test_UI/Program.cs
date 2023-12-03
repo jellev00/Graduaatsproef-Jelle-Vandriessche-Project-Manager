@@ -27,44 +27,42 @@ namespace Test_UI
             List<ProjectTasks> projectTasks = manager.InsertProjectTasks();
             List<ProjectCalendar> projectCalendars = manager.InsertProjectCalendar();
 
-            foreach (var u in users)
-            {
-                User user = new User(u.UserId, u.Name, u.Email, u.Password);
-                repo.userRepo.AddUser(user);
-            }
+            //foreach (var u in users)
+            //{
+            //    User user = new User(u.UserId, u.First_Name, u.Last_Name, u.Email, u.Password);
+            //    repo.userRepo.AddUser(user);
+            //}
 
-            foreach (var p in projects)
-            {
-                Project project = new Project(p.ProjectId, p.UserId, p.Name, p.Description);
-                repo.projectRepo.AddProject(project);
-            }
+            //foreach (var p in projects)
+            //{
+            //    Project project = new Project(p.ProjectId, p.UserId, p.Name, p.Description, p.Color);
+            //    repo.projectRepo.AddProject(project);
+            //}
 
-            //this insert still needs to be done
+            //foreach (var uT in userTasks)
+            //{
+            //    UserTasks userTask = new UserTasks(uT.TaskId, uT.UserId, uT.TaskName, uT.TaskDescription, uT.Color);
+            //    repo.userTasksRepo.AddTask(userTask);
+            //}
 
-            foreach (var uT in userTasks)
-            {
-                UserTasks userTask = new UserTasks(uT.TaskId, uT.UserId, uT.TaskDescription);
-                // Repo link for adding
-            }
-
-            foreach (var pT in projectTasks)
-            {
-                ProjectTasks projectTask = new ProjectTasks(pT.TaskId, pT.ProjectId, pT.TaskDescription);
-                // Repo link for adding
-            }
+            //foreach (var pT in projectTasks)
+            //{
+            //    ProjectTasks projectTask = new ProjectTasks(pT.TaskId, pT.ProjectId, pT.TaskName, pT.TaskDescription, pT.Color);
+            //    repo.projectTasksRepo.AddTask(projectTask);
+            //}
 
             foreach (var pC in projectCalendars)
             {
                 ProjectCalendar projectCalendar = new ProjectCalendar(pC.CalendarId, pC.ProjectId, pC.Name, pC.Description, pC.Date);
-                // Repo link for adding
+                repo.projectCalendarRepo.AddCalendar(projectCalendar);
             }
 
             Console.WriteLine("Users");
             Console.ForegroundColor = ConsoleColor.Green;
             var u1 = repo.userRepo.GetUser(1);
             var u2 = repo.userRepo.GetUser(2);
-            Console.WriteLine($"User ID: {u1.UserId}, Name: {u1.Name}, Email: {u1.Email}, Pass: {u1.Password}");
-            Console.WriteLine($"User ID: {u2.UserId}, Name: {u2.Name}, Email: {u2.Email}, Pass: {u2.Password}");
+            Console.WriteLine($"User ID: {u1.UserId}, First_Name: {u1.First_Name}, Last_Name: {u1.Last_Name}, Email: {u1.Email}, Pass: {u1.Password}");
+            Console.WriteLine($"User ID: {u2.UserId}, First_Name: {u2.First_Name}, Last_Name: {u2.Last_Name}, Email: {u2.Email}, Pass: {u2.Password}");
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(" ");
@@ -74,7 +72,43 @@ namespace Test_UI
             var Projects = await repo.projectRepo.GetAllProjects(1);
             foreach (var p in Projects)
             {
-                Console.WriteLine($"Project_Id: {p.ProjectId}, User_Id: {p.UserId}, Name: {p.Name}, Description: {p.Description}");
+                Console.WriteLine($"Project_Id: {p.ProjectId}, User_Id: {p.UserId}, Name: {p.Name}, Description: {p.Description}, Color: {p.Color}");
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" ");
+
+            Console.WriteLine("User Task");
+            Console.ForegroundColor = ConsoleColor.Green;
+            var UserTasks = await repo.userTasksRepo.GetAllTasks(1);
+            foreach (var uT in UserTasks)
+            {
+                Console.WriteLine($"UserTask_Id: {uT.TaskId}, User_Id: {uT.UserId}, Task_Name: {uT.TaskName}, Description: {uT.TaskDescription}, Color: {uT.Color}");
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" ");
+
+            Console.WriteLine("Project Task");
+            Console.ForegroundColor = ConsoleColor.Green;
+            var ProjectTasks = await repo.projectTasksRepo.GetAllTasks(1);
+            foreach (var pT in ProjectTasks)
+            {
+                Console.WriteLine($"ProjectTask_Id: {pT.TaskId}, Project_Id: {pT.ProjectId}, Task_Name: {pT.TaskName}, Description: {pT.TaskDescription}, Color: {pT.Color}");
+            }
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine(" ");
+
+            Console.WriteLine("Project Calendar");
+            Console.ForegroundColor = ConsoleColor.Green;
+            var ProjectCalendar = await repo.projectCalendarRepo.GetAllCalendars(1);
+            foreach (var pC in ProjectCalendar)
+            {
+                Console.WriteLine($"ProjectCalendar_Id: {pC.CalendarId}, Project_Id: {pC.ProjectId}, Name: {pC.Name}, Description: {pC.Description}, Date: {pC.Date}");
             }
             Console.ForegroundColor = ConsoleColor.White;
 

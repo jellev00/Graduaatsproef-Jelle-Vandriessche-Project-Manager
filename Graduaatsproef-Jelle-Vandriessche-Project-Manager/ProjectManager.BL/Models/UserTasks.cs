@@ -9,17 +9,21 @@ namespace ProjectManager.BL.Models
 {
     public class UserTasks
     {
-        public UserTasks(int userId, string taskDescription)
+        public UserTasks(int userId, string taskName, string taskDescription, string color)
         {
             _userId = userId;
+            _taskName = taskName;
             _taskDescription = taskDescription;
+            _color = color;
         }
 
-        public UserTasks(int taskId, int userId, string taskDescription)
+        public UserTasks(int taskId, int userId, string taskName, string taskDescription, string color)
         {
             _taskId = taskId;
             _userId = userId;
+            _taskName = taskName;
             _taskDescription = taskDescription;
+            _color = color;
         }
 
         private int _taskId;
@@ -54,6 +58,26 @@ namespace ProjectManager.BL.Models
             }
         }
 
+        private string _taskName;
+        public string TaskName
+        {
+            get
+            {
+                return _taskName;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new UserTasksException("TaskName is invalid!");
+                }
+                else
+                {
+                    _taskName = value;
+                }
+            }
+        }
+
         private string _taskDescription;
         public string TaskDescription
         {
@@ -69,6 +93,26 @@ namespace ProjectManager.BL.Models
                 } else
                 {
                     _taskDescription = value;
+                }
+            }
+        }
+
+        private string _color;
+        public string Color
+        {
+            get
+            {
+                return _color;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new UserTasksException("Color is invalid!");
+                }
+                else
+                {
+                    _color = value;
                 }
             }
         }

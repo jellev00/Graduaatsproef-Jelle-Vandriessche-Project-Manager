@@ -15,7 +15,7 @@ namespace ProjectManager.EF.Mapper
         {
             try
             {
-                return new UserTasks(db.Task_ID, db.User_ID, db.Task_Description);
+                return new UserTasks(db.Task_ID, db.User_ID, db.Task_Name, db.Task_Description, db.Color);
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace ProjectManager.EF.Mapper
         {
             try
             {
-                return new UserTasksEF(uT.UserId, uT.TaskDescription);
+                return new UserTasksEF(uT.UserId, uT.TaskName, uT.TaskDescription, uT.Color);
             }
             catch (Exception ex)
             {

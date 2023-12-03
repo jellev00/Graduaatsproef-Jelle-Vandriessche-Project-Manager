@@ -10,17 +10,19 @@ namespace ProjectManager.BL.Models
 {
     public class User
     {
-        public User(string name, string email, string password)
+        public User(string firstName, string lastName, string email, string password)
         {
-            _name = name;
+            _first_name = firstName;
+            _last_name = lastName;
             _email = email;
             _password = password;
         }
 
-        public User(int userId, string name, string email, string password)
+        public User(int userId, string firstName, string lastName, string email, string password)
         {
             _userId = userId;
-            _name = name;
+            _first_name = firstName;
+            _last_name = lastName;
             _email = email;
             _password = password;
         }
@@ -48,21 +50,41 @@ namespace ProjectManager.BL.Models
             }
         }
 
-        private string _name;
-        public string Name
+        private string _first_name;
+        public string First_Name
         {
             get
             {
-                return _name;
+                return _first_name;
             }
             set
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new UserException("Name is invalid!");
+                    throw new UserException("First Name is invalid!");
                 } else
                 {
-                    _name = value;
+                    _first_name = value;
+                }
+            }
+        }
+
+        private string _last_name;
+        public string Last_Name
+        {
+            get
+            {
+                return _last_name;
+            }
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new UserException("Last Name is invalid!");
+                }
+                else
+                {
+                    _last_name = value;
                 }
             }
         }

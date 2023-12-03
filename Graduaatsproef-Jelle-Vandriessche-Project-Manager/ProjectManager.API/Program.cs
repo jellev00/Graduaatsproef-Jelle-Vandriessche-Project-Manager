@@ -18,6 +18,10 @@ namespace ProjectManager.API
             builder.Services.AddSingleton<ProjectManager.BL.Managers.ProjectManager>();
             builder.Services.AddSingleton<IUserTasksRepo>(r => new RepoUserTasksEF(connectionString));
             builder.Services.AddSingleton<UserTasksManager>();
+            builder.Services.AddSingleton<IProjectTasksRepo>(r => new RepoProjectTasksEF(connectionString));
+            builder.Services.AddSingleton<ProjectTasksManager>();
+            builder.Services.AddSingleton<IProjectCalendarRepo>(r => new RepoProjectCalendarEF(connectionString));
+            builder.Services.AddSingleton<ProjectCalendarManager>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

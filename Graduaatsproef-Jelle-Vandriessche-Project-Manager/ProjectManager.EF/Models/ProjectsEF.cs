@@ -14,19 +14,21 @@ namespace ProjectManager.EF.Models
         {
         }
 
-        public ProjectsEF(int user_ID, string name, string description)
+        public ProjectsEF(int user_ID, string name, string description, string color)
         {
             User_ID = user_ID;
             Name = name;
             Description = description;
+            Color = color;
         }
 
-        public ProjectsEF(int project_ID, int user_ID, string name, string description)
+        public ProjectsEF(int project_ID, int user_ID, string name, string description, string color)
         {
             Project_ID = project_ID;
             User_ID = user_ID;
             Name = name;
             Description = description;
+            Color = color;
         }
 
         [Key]
@@ -41,6 +43,9 @@ namespace ProjectManager.EF.Models
 
         [Column(TypeName = "varchar(300)")]
         public string Description { get; set; }
+
+        [Column(TypeName = "varchar(20)")]
+        public string Color { get; set; }
 
         public UserEF user { get; set; }
 

@@ -34,15 +34,15 @@ namespace ProjectManager.BL.Managers
             }
         }
 
-        public void DeleteTask(int userId)
+        public void DeleteTask(int taskId)
         {
             try
             {
-                if (!_repo.TaskExists(userId))
+                if (!_repo.TaskExists(taskId))
                 {
                     throw new UserTasksException("DeleteTask - Task doesn't exist!");
                 }
-                _repo.DeleteTask(userId);
+                _repo.DeleteTask(taskId);
             }
             catch (Exception ex)
             {
@@ -62,11 +62,11 @@ namespace ProjectManager.BL.Managers
             }
         }
 
-        public bool TaskExists(int userId)
+        public bool TaskExists(int taskId)
         {
             try
             {
-                return _repo.TaskExists(userId);
+                return _repo.TaskExists(taskId);
             }
             catch (Exception ex)
             {

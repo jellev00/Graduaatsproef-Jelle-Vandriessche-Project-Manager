@@ -20,9 +20,9 @@ namespace EFDatalayerProvider
                     case RepositoryType.EFCore:
                         userRepo = new RepoUserEF(connectionString);
                         projectRepo = new RepoProjectsEF(connectionString);
-                        //userTasksRepo = new RepoUserTasksEF(connectionString);
-                        //projectTasksRepo = new RepoProjectTasksEF(connectionString);
-                        //projectCalendarRepo = new RepoProjectCalendarEF(connectionString);
+                        userTasksRepo = new RepoUserTasksEF(connectionString);
+                        projectTasksRepo = new RepoProjectTasksEF(connectionString);
+                        projectCalendarRepo = new RepoProjectCalendarEF(connectionString);
 
                         break;
                     default: throw new EFDatalayerFactoryException("GetRepo");

@@ -15,7 +15,7 @@ namespace ProjectManager.EF.Mapper
         {
             try
             {
-                return new Project(db.Project_ID, db.User_ID, db.Name, db.Description);
+                return new Project(db.Project_ID, db.User_ID, db.Name, db.Description, db.Color);
             }
             catch (Exception ex)
             {
@@ -27,7 +27,7 @@ namespace ProjectManager.EF.Mapper
         {
             try
             {
-                return new ProjectsEF(p.ProjectId, p.UserId, p.Name, p.Description);
+                return new ProjectsEF(p.ProjectId, p.UserId, p.Name, p.Description, p.Color);
             }
             catch (Exception ex)
             {

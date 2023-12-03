@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectManager.API.Models;
 using ProjectManager.BL.Models;
 using ProjectManager.BL.Managers;
+using System.Threading.Tasks;
 
 namespace ProjectManager.API.Controllers
 {
@@ -11,19 +12,26 @@ namespace ProjectManager.API.Controllers
     public class UserTasksController : ControllerBase
     {
         private UserTasksManager _userTasksManager;
+        private UserManager _userManager;
 
-        public UserTasksController(UserTasksManager userTasksManager)
+        public UserTasksController(UserTasksManager userTasksManager, UserManager userManager)
         {
             _userTasksManager = userTasksManager;
+            _userManager = userManager;
         }
 
-        [HttpGet("~/api/user/{UserID}/[controller]")]
+        [HttpGet("~/api/User/{UserID}/[controller]")]
         public ActionResult<List<UserTasks>> GetTasksByUserID(int UserID)
         {
             try
             {
-                List<UserTasks> Tasks = _userTasksManager.GetAllTasks(UserID);
-                return Ok(Tasks);
+                if (_userManager.UserExistsID(UserID))
+                {
+                    List<UserTasks> Tasks = _userTasksManager.GetAllTasks(UserID);
+                    return Ok(Tasks);
+                }
+
+                return NotFound($"User with ID {UserID} not found.");
             }
             catch (Exception ex)
             {
@@ -36,10 +44,10 @@ namespace ProjectManager.API.Controllers
         {
             try
             {
-                var task = new UserTasks(userTasksDTO.UserId, userTasksDTO.TaskDescription);
+                var task = new UserTasks(userTasksDTO.UserId, userTasksDTO.TaskName, userTasksDTO.TaskDescription, userTasksDTO.Color);
                 _userTasksManager.AddTask(task);
 
-                var createdUserTasksDTO = new UserTasksDTO(task.UserId, task.TaskDescription);
+                var createdUserTasksDTO = new UserTasksDTO(task.UserId, task.TaskName, task.TaskDescription, task.Color);
 
                 return CreatedAtAction(nameof(GetTasksByUserID), new { UserID = task.UserId }, createdUserTasksDTO);
             }
@@ -50,18 +58,18 @@ namespace ProjectManager.API.Controllers
         }
 
 
-        [HttpDelete("{userTaskID}")]
-        public ActionResult DeleteProject(int userTaskID)
+        [HttpDelete("{TaskID}")]
+        public ActionResult DeleteTask(int TaskID)
         {
             try
             {
-                if (!_userTasksManager.TaskExists(userTaskID))
+                if (!_userTasksManager.TaskExists(TaskID))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    _userTasksManager.DeleteTask(userTaskID);
+                    _userTasksManager.DeleteTask(TaskID);
                     return NoContent();
                 }
             }

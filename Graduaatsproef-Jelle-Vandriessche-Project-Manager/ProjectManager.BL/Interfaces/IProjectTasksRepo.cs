@@ -9,7 +9,9 @@ namespace ProjectManager.BL.Interfaces
 {
     public interface IProjectTasksRepo
     {
-        List<ProjectTasks> GetAllTasks(int projectId);
-        ProjectTasks AddTask(ProjectTasks projectTask);
+        Task<List<ProjectTasks>> GetAllTasks(int projectId);
+        void AddTask(ProjectTasks projectTask);
+        void DeleteTask(int taskId);
+        bool TaskExists(int taskId);
     }
 }

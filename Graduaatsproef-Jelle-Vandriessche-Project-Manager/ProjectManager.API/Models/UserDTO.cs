@@ -4,14 +4,16 @@ namespace ProjectManager.API.Models
 {
     public class UserDTO
     {
-        public UserDTO(string name, string email, string password)
+        public UserDTO(string first_name, string last_name, string email, string password)
         {
-            Name = name;
+            First_Name = first_name;
+            Last_Name = last_name;
             Email = email;
             Password = password;
         }
 
-        public string Name { get; set; }
+        public string First_Name { get; set; }
+        public string Last_Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
     }

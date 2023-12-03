@@ -26,7 +26,7 @@ namespace ProjectManager.BL.Managers
                 {
                     throw new UserException("AddUser");
                 }
-                if (_repo.UserExists(user.Name))
+                if (_repo.UserExistsEmail(user.Email))
                 {
                     throw new UserException("AddUser - User Already exists!");
                 }
@@ -37,45 +37,57 @@ namespace ProjectManager.BL.Managers
             }
         }
 
-        public User GetUserByName(string userName)
+        public User GetUserByEmail(string Email)
         {
             try
             {
-                if (!_repo.UserExists(userName))
+                if (!_repo.UserExistsEmail(Email))
                 {
-                    throw new UserException("GetUserByName - User doesn't exist!");
+                    throw new UserException("GetUserByEmail - User doesn't exist!");
                 }
-                return _repo.GetUserByName(userName);
+                return _repo.GetUserByEmail(Email);
             } catch (Exception ex)
             {
-                throw new UserException("GetUserByName", ex);
+                throw new UserException("GetUserByEmail", ex);
             }
         }
 
-        public void DeleteUser(string userName)
+        public void DeleteUser(string Email)
         {
             try
             {
-                if (!_repo.UserExists(userName))
+                if (!_repo.UserExistsEmail(Email))
                 {
                     throw new UserException("DeleteUser - User doesn't exist!");
                 }
-                _repo.DeleteUser(userName);
+                _repo.DeleteUser(Email);
             } catch (Exception ex)
             {
                 throw new UserException("DeleteUser", ex);
             }
         }
 
-        public bool UserExists(string userName)
+        public bool UserExistsEmail(string Email)
         {
             try
             {
-                return _repo.UserExists(userName);
+                return _repo.UserExistsEmail(Email);
             }
             catch (Exception ex)
             {
-                throw new UserException("UserExists", ex);
+                throw new UserException("UserExistsEmail", ex);
+            }
+        }
+
+        public bool UserExistsID(int userId)
+        {
+            try
+            {
+                return _repo.UserExistsID(userId);
+            }
+            catch (Exception ex)
+            {
+                throw new UserException("UserExistsID", ex);
             }
         }
     }

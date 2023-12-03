@@ -9,7 +9,9 @@ namespace ProjectManager.BL.Interfaces
 {
     public interface IProjectCalendarRepo
     {
-        List<ProjectCalendar> GetAllCalendars(int projectId);
-        ProjectCalendar AddCalendar(ProjectCalendar projectCalendar);
+        Task<List<ProjectCalendar>> GetAllCalendars(int projectId);
+        void AddCalendar(ProjectCalendar projectCalendar);
+        void DeleteCalendar(int calendarID);
+        bool CalendarExists(int calendarID);
     }
 }
