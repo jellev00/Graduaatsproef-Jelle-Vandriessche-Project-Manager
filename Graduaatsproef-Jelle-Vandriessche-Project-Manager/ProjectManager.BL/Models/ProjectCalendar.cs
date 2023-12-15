@@ -10,18 +10,25 @@ namespace ProjectManager.BL.Models
 {
     public class ProjectCalendar
     {
-        public ProjectCalendar(int projectId, string name, string description, DateTime date)
+        public ProjectCalendar(int calendarId, Project project, string name, string description, DateTime date)
         {
-            _projectId = projectId;
+            _calendarId = calendarId;
+            _project = project;
             _name = name;
             _Description = description;
             _date = date;
         }
 
-        public ProjectCalendar(int calendarId, int projectId, string name, string description, DateTime date)
+        public ProjectCalendar(string name, string description, DateTime date)
         {
-            _calendarId = calendarId;
-            _projectId = projectId;
+            _name = name;
+            _Description = description;
+            _date = date;
+        }
+
+        public ProjectCalendar(Project project, string name, string description, DateTime date)
+        {
+            _project = project;
             _name = name;
             _Description = description;
             _date = date;
@@ -47,16 +54,23 @@ namespace ProjectManager.BL.Models
             }
         }
 
-        private int _projectId;
-        public int ProjectId
+        private Project _project;
+        public Project Project
         {
             get
             {
-                return _projectId;
+                return _project;
             }
             set
             {
-                _projectId = value;
+                if (value == null)
+                {
+                    throw new ProjectCalendarException("Project is invalid!");
+                }
+                else
+                {
+                    _project = value;
+                }
             }
         }
 

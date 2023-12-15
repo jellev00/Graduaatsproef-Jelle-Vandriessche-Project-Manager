@@ -9,18 +9,25 @@ namespace ProjectManager.BL.Models
 {
     public class UserTasks
     {
-        public UserTasks(int userId, string taskName, string taskDescription, string color)
+        public UserTasks(int taskId, User user, string taskName, string taskDescription, string color)
         {
-            _userId = userId;
+            _taskId = taskId;
+            _user = user;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
         }
 
-        public UserTasks(int taskId, int userId, string taskName, string taskDescription, string color)
+        public UserTasks(string taskName, string taskDescription, string color)
         {
-            _taskId = taskId;
-            _userId = userId;
+            _taskName = taskName;
+            _taskDescription = taskDescription;
+            _color = color;
+        }
+
+        public UserTasks(User user, string taskName, string taskDescription, string color)
+        {
+            _user = user;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
@@ -45,16 +52,23 @@ namespace ProjectManager.BL.Models
             }
         }
 
-        private int _userId;
-        public int UserId
+        private User _user;
+        public User User
         {
             get
             {
-                return _userId;
+                return _user;
             }
             set
             {
-                _userId = value;
+                if (value == null)
+                {
+                    throw new UserTasksException("User is invalid!");
+                }
+                else
+                {
+                    _user = value;
+                }
             }
         }
 

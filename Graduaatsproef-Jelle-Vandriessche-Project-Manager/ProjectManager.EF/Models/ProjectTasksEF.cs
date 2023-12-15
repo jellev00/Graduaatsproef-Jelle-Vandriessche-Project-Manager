@@ -14,18 +14,18 @@ namespace ProjectManager.EF.Models
         {
         }
 
-        public ProjectTasksEF(int project_ID, string task_Name, string task_Description, string color)
+        public ProjectTasksEF(ProjectsEF project, string task_Name, string task_Description, string color)
         {
-            Project_ID = project_ID;
+            Project = project;
             Task_Name = task_Name;
             Task_Description = task_Description;
             Color = color;
         }
 
-        public ProjectTasksEF(int project_Task_ID, int project_ID, string task_Name, string task_Description, string color)
+        public ProjectTasksEF(int project_Task_ID, ProjectsEF project, string task_Name, string task_Description, string color)
         {
             Project_Task_ID = project_Task_ID;
-            Project_ID = project_ID;
+            Project = project;
             Task_Name= task_Name;
             Task_Description = task_Description;
             Color = color;
@@ -34,9 +34,6 @@ namespace ProjectManager.EF.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Project_Task_ID { get; set; }
-
-        [ForeignKey("project")]
-        public int Project_ID { get; set; }
 
         [Column(TypeName = "varchar(100)")]
         public string Task_Name { get; set; }
@@ -47,6 +44,6 @@ namespace ProjectManager.EF.Models
         [Column(TypeName = "varchar(20)")]
         public string Color { get; set; }
 
-        public ProjectsEF project { get; set; }
+        public ProjectsEF Project { get; set; }
     }
 }

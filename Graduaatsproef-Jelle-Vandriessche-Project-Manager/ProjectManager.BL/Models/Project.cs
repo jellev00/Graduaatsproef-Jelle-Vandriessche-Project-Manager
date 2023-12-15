@@ -9,18 +9,36 @@ namespace ProjectManager.BL.Models
 {
     public class Project
     {
-        public Project(int userId, string name, string description, string color)
+        public Project(int projectId, User user, string name, string description, string color, List<ProjectTasks> projectTasks, List<ProjectCalendar> projectCalendars)
         {
-            _userId = userId;
+            _projectId = projectId;
+            _user = user;
+            _name = name;
+            _description = description;
+            _color = color;
+            _projectTasks = projectTasks;
+            _projectCalendar = projectCalendars;
+        }
+
+        public Project(string name, string description, string color)
+        {
             _name = name;
             _description = description;
             _color = color;
         }
 
-        public Project(int projectId, int userId, string name, string description, string color)
+        public Project(User user, string name, string description, string color)
+        {
+            _user = user;
+            _name = name;
+            _description = description;
+            _color = color;
+        }
+
+        public Project(int projectId, User user, string name, string description, string color)
         {
             _projectId = projectId;
-            _userId = userId;
+            _user = user;
             _name = name;
             _description = description;
             _color = color;
@@ -45,16 +63,23 @@ namespace ProjectManager.BL.Models
             }
         }
 
-        private int _userId;
-        public int UserId 
+        private User _user;
+        public User User
         {
             get
             {
-                return _userId;
+                return _user;
             }
             set
             {
-                _userId = value;
+                if (value == null)
+                {
+                    throw new ProjectsException("User is invalid!");
+                }
+                else
+                {
+                    _user = value;
+                }
             }
         }
 
@@ -117,6 +142,44 @@ namespace ProjectManager.BL.Models
             }
         }
 
+        private List<ProjectTasks> _projectTasks;
+        public List<ProjectTasks> ProjectTasks
+        {
+            get
+            {
+                return _projectTasks;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ProjectsException("ProjectTasks can't be null!");
+                }
+                else
+                {
+                    _projectTasks = value;
+                }
+            }
+        }
 
+        private List<ProjectCalendar> _projectCalendar;
+        public List<ProjectCalendar> ProjectCalendar
+        {
+            get
+            {
+                return _projectCalendar;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new ProjectsException("ProjectCalendar can't be null!");
+                }
+                else
+                {
+                    _projectCalendar = value;
+                }
+            }
+        }
     }
 }

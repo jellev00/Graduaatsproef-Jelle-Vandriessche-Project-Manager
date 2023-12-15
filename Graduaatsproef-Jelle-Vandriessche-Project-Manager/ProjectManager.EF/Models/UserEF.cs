@@ -33,6 +33,18 @@ namespace ProjectManager.EF.Models
             Password = password;
         }
 
+        public UserEF(string first_Name, string last_Name, string email, string password, List<ProjectsEF> projects, List<UserTasksEF> userTasks) : this(first_Name, last_Name, email, password)
+        {
+            Projects = projects;
+            UserTasks = userTasks;
+        }
+
+        public UserEF(int user_ID, string first_Name, string last_Name, string email, string password, List<ProjectsEF> projects, List<UserTasksEF> userTasks) : this(user_ID, first_Name, last_Name, email, password)
+        {
+            Projects = projects;
+            UserTasks = userTasks;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int User_ID { get; set; }

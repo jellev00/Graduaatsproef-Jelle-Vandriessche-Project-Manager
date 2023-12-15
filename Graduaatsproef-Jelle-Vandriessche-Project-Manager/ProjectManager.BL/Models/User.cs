@@ -18,6 +18,17 @@ namespace ProjectManager.BL.Models
             _password = password;
         }
 
+        public User(int userId, string firstName, string lastName, string email, string password, List<UserTasks> userTasks, List<Project> projects)
+        {
+            _userId = userId;
+            _first_name = firstName;
+            _last_name = lastName;
+            _email = email;
+            _password = password;
+            _userTasks = userTasks;
+            _projects = projects;
+        }
+
         public User(int userId, string firstName, string lastName, string email, string password)
         {
             _userId = userId;
@@ -123,6 +134,46 @@ namespace ProjectManager.BL.Models
                 } else
                 {
                     _password = value;
+                }
+            }
+        }
+
+        private List<UserTasks> _userTasks;
+        public List<UserTasks> UserTasks
+        {
+            get
+            {
+                return _userTasks;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new UserException("UserTasks can't be null!");
+                }
+                else
+                {
+                    _userTasks = value;
+                }
+            }
+        }
+
+        private List<Project> _projects;
+        public List<Project> Projects
+        {
+            get
+            {
+                return _projects;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    throw new UserException("Projects can't be null!");
+                }
+                else
+                {
+                    _projects = value;
                 }
             }
         }

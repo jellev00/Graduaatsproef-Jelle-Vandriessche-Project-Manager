@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v6.0": {
       "Test_UI/1.0.0": {
         "dependencies": {
-          "EFDatalayerProvider": "1.0.0",
           "ProjectManager.BL": "1.0.0",
           "ProjectManager.EF": "1.0.0",
           "System.Configuration.ConfigurationManager": "6.0.1"
@@ -456,15 +455,6 @@
           }
         }
       },
-      "EFDatalayerProvider/1.0.0": {
-        "dependencies": {
-          "ProjectManager.BL": "1.0.0",
-          "ProjectManager.EF": "1.0.0"
-        },
-        "runtime": {
-          "EFDatalayerProvider.dll": {}
-        }
-      },
       "ProjectManager.BL/1.0.0": {
         "runtime": {
           "ProjectManager.BL.dll": {}
@@ -766,11 +756,6 @@
       "sha512": "sha512-IXoJOXIqc39AIe+CIR7koBtRGMiCt/LPM3lI+PELtDIy9XdyeSrwXFdWV9dzJ2Awl0paLWUaknLxFQ5HpHZUog==",
       "path": "system.windows.extensions/6.0.0",
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
-    },
-    "EFDatalayerProvider/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
     },
     "ProjectManager.BL/1.0.0": {
       "type": "project",

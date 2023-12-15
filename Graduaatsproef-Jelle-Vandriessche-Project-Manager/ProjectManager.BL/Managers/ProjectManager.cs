@@ -12,63 +12,126 @@ namespace ProjectManager.BL.Managers
     public class ProjectManager
     {
         private IProjectRepo _repo;
+        private IUserRepo _userRepo;
 
-        public ProjectManager(IProjectRepo repo)
+        public ProjectManager(IProjectRepo repo, IUserRepo userRepo)
         {
             _repo = repo;
+            _userRepo = userRepo;
         }
 
-        public List<Project> GetAllProjects(int userId)
+        // POST
+        public void AddTaskToProject(int projectId, ProjectTasks projectTask)
         {
             try
             {
-                return _repo.GetAllProjects(userId).Result;
-            } catch (Exception ex)
-            {
-                throw new ProjectsException("GetAllProjects", ex);
-            }
-        }
-
-        public void AddProject(Project project)
-        {
-            try
-            {
-                if (project == null)
+                if (projectTask == null)
                 {
-                    throw new ProjectsException("AddProject");
+                    throw new ProjectsException("AddTaskToProject");
                 }
-                _repo.AddProject(project);
-            } catch (Exception ex)
-            {
-                throw new ProjectsException("AddProject", ex);
-            }
-        }
-
-        public void DeleteProject(int projectID)
-        {
-            try
-            {
-                if (!_repo.ProjectExists(projectID))
+                if (_repo.ProjectTasksExistsId(projectTask.TaskId))
                 {
-                    throw new ProjectsException("DeleteProject - Project doesn't exist!");
+                    throw new ProjectsException("AddTaskToProject - Task Already exists!");
                 }
-                _repo.DeleteProject(projectID);
+
+                _repo.AddTaskToProject(projectId, projectTask);
             }
             catch (Exception ex)
             {
-                throw new ProjectsException("DeleteProject", ex);
+                throw new ProjectsException("AddTaskToProject", ex);
             }
         }
-
-        public bool ProjectExists(int projectID)
+        public void AddCalendarToProject(int projectId, ProjectCalendar projectCalendar)
         {
             try
             {
-                return _repo.ProjectExists(projectID);
+                if (projectCalendar == null)
+                {
+                    throw new ProjectsException("AddCalendarToProject");
+                }
+                if (_repo.ProjectCalendarExistsId(projectCalendar.CalendarId))
+                {
+                    throw new ProjectsException("AddCalendarToProject - Calendar Already exists!");
+                }
+
+                _repo.AddCalendarToProject(projectId, projectCalendar);
             }
             catch (Exception ex)
             {
-                throw new ProjectsException("ProjectExists", ex);
+                throw new ProjectsException("AddCalendarToProject", ex);
+            }
+        }
+
+        // GET
+        public Project GetProjectById(int projectId)
+        {
+            try
+            {
+                if (!_userRepo.ProjectExistsId(projectId))
+                {
+                    throw new ProjectsException("GetProjectById - Project doesn't exist!");
+                }
+                return _repo.GetProjectById(projectId);
+            }
+            catch (Exception ex)
+            {
+                throw new ProjectsException("GetProjectById", ex);
+            }
+        }
+
+        // DELETE
+        public void DeleteProjectTask(int projectTaskId)
+        {
+            try
+            {
+                if (!_repo.ProjectTasksExistsId(projectTaskId))
+                {
+                    throw new ProjectsException("DeleteProjectTask - Task doesn't exist!");
+                }
+                _repo.DeleteProjectTask(projectTaskId);
+            }
+            catch (Exception ex)
+            {
+                throw new ProjectsException("DeleteProjectTask", ex);
+            }
+        }
+        public void DeleteProjectCalendar(int projectCalendarId)
+        {
+            try
+            {
+                if (!_repo.ProjectCalendarExistsId(projectCalendarId))
+                {
+                    throw new ProjectsException("DeleteProjectTask - Calendar doesn't exist!");
+                }
+                _repo.DeleteProjectCalendar(projectCalendarId);
+            }
+            catch (Exception ex)
+            {
+                throw new ProjectsException("DeleteProjectTask", ex);
+            }
+        }
+
+        // Exists
+        public bool ProjectTasksExistsId(int taskId)
+        {
+            try
+            {
+                return _repo.ProjectTasksExistsId(taskId);
+            }
+            catch (Exception ex)
+            {
+                throw new ProjectsException("ProjectTasksExistsId", ex);
+            }
+        }
+        public bool ProjectCalendarExistsId(int CalendarId)
+        {
+            try
+            {
+                return _repo.ProjectCalendarExistsId(CalendarId);
+            }
+            catch (Exception ex)
+            {
+                throw new ProjectsException("ProjectCalendarExistsId", ex);
             }
         }
     }

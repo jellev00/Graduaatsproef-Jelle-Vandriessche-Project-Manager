@@ -14,18 +14,18 @@ namespace ProjectManager.EF.Models
         {
         }
 
-        public ProjectCalendarEF(int project_ID, string name, string description, DateTime date)
+        public ProjectCalendarEF(ProjectsEF project, string name, string description, DateTime date)
         {
-            Project_ID = project_ID;
+            Project = project;
             Name = name;
             Description = description;
             Date = date;
         }
 
-        public ProjectCalendarEF(int project_CalendarID, int project_ID, string name, string description, DateTime date)
+        public ProjectCalendarEF(int project_CalendarID, ProjectsEF project, string name, string description, DateTime date)
         {
             Project_CalendarID = project_CalendarID;
-            Project_ID = project_ID;
+            Project = project;
             Name = name;
             Description = description;
             Date = date;
@@ -35,9 +35,6 @@ namespace ProjectManager.EF.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Project_CalendarID { get; set; }
 
-        [ForeignKey("project")]
-        public int Project_ID { get; set; }
-
         [Column(TypeName = "varchar(100)")]
         public string Name { get; set; }
 
@@ -46,6 +43,6 @@ namespace ProjectManager.EF.Models
 
         public DateTime Date { get; set; }
 
-        public ProjectsEF project { get; set; }
+        public ProjectsEF Project { get; set; }
     }
 }

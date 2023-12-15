@@ -15,7 +15,9 @@ namespace ProjectManager.EF.Mapper
         {
             try
             {
-                return new UserTasks(db.Task_ID, db.User_ID, db.Task_Name, db.Task_Description, db.Color);
+                User user = new User(db.User.User_ID, db.User.First_Name, db.User.Last_Name, db.User.Email, db.User.Password);
+
+                return new UserTasks(db.Task_ID, user, db.Task_Name, db.Task_Description, db.Color);
             }
             catch (Exception ex)
             {
@@ -23,11 +25,19 @@ namespace ProjectManager.EF.Mapper
             }
         }
 
-        public static UserTasksEF MapToDB(UserTasks uT)
+        public static UserTasksEF MapToDB(UserTasks uT, ContextEF ctx)
         {
             try
             {
-                return new UserTasksEF(uT.UserId, uT.TaskName, uT.TaskDescription, uT.Color);
+                UserEF user = ctx.Users.Find(uT.User.UserId);
+
+                if (user == null)
+                {
+                    // Handle the case where the user is not found in the database
+                    throw new MapEFException($"User with ID {uT.User.UserId} not found.");
+                }
+
+                return new UserTasksEF(user, uT.TaskName, uT.TaskDescription, uT.Color);
             }
             catch (Exception ex)
             {

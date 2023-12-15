@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectManager.API.Models;
 using ProjectManager.BL.Models;
 using ProjectManager.BL.Managers;
+using ProjectManager.API.Models.Output;
+using ProjectManager.API.Models.Input;
 
 namespace ProjectManager.API.Controllers
 {
@@ -20,18 +22,15 @@ namespace ProjectManager.API.Controllers
         }
 
         // The ~ character in the route template specifies that the route should be relative to the application root.
-        [HttpGet("~/api/User/{UserID}/[controller]")]
-        public ActionResult<List<Project>> GetProjectByUserID(int UserID)
+
+        // GET
+        [HttpGet("{projectId}")]
+        public ActionResult<UserOutput> GetProjectById(int projectId)
         {
             try
             {
-                if (_userManager.UserExistsID(UserID))
-                {
-                    List<Project> projects = _projectManager.GetAllProjects(UserID);
-                    return Ok(projects);
-                }
-
-                return NotFound($"User with ID {UserID} not found.");
+                Project project = _projectManager.GetProjectById(projectId);
+                return Ok(project);
             }
             catch (Exception ex)
             {
@@ -39,17 +38,18 @@ namespace ProjectManager.API.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult<ProjectDTO> AddProject([FromBody] ProjectDTO projectDTO)
+        // POST
+        [HttpPost("AddTask/{projectId}")]
+        public ActionResult<ProjectTasksOutput> AddTaskToProject(int projectId, [FromBody] ProjectTasksInput tasksInput)
         {
             try
             {
-                var project = new Project(projectDTO.UserId, projectDTO.Name, projectDTO.Description, projectDTO.Color);
-                _projectManager.AddProject(project);
+                Project project = _projectManager.GetProjectById(projectId);
 
-                var createdProjectDTO = new ProjectDTO(project.UserId, project.Name, project.Description, project.Color);
+                ProjectTasks task = new ProjectTasks(project, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color);
+                _projectManager.AddTaskToProject(projectId, task);
 
-                return CreatedAtAction(nameof(GetProjectByUserID), new { ProjectId = project.ProjectId }, createdProjectDTO);
+                return CreatedAtAction(nameof(GetProjectById), new { ProjectId = projectId }, task);
             }
             catch (Exception ex)
             {
@@ -57,18 +57,58 @@ namespace ProjectManager.API.Controllers
             }
         }
 
-        [HttpDelete("{projectID}")]
-        public ActionResult DeleteProject(int projectID)
+        [HttpPost("AddCalendar/{projectId}")]
+        public ActionResult<ProjectCalendarOutput> AddCalendarToProject(int projectId, [FromBody] ProjectCalendarInput calendarInput)
         {
             try
             {
-                if (!_projectManager.ProjectExists(projectID))
+                Project project = _projectManager.GetProjectById(projectId);
+
+                ProjectCalendar calendar = new ProjectCalendar(project, calendarInput.Name, calendarInput.Description, calendarInput.Date);
+                _projectManager.AddCalendarToProject(projectId, calendar);
+
+                return CreatedAtAction(nameof(GetProjectById), new { ProjectId = projectId }, calendar);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // DELETE
+        [HttpDelete("Task/{projectTaskId}")]
+        public ActionResult DeleteProjectTask(int projectTaskId)
+        {
+            try
+            {
+                if (!_projectManager.ProjectTasksExistsId(projectTaskId))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    _projectManager.DeleteProject(projectID);
+                    _projectManager.DeleteProjectTask(projectTaskId);
+                    return NoContent();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("Calendar/{projectCalendarId}")]
+        public ActionResult DeleteProjectCalendar(int projectCalendarId)
+        {
+            try
+            {
+                if (!_projectManager.ProjectCalendarExistsId(projectCalendarId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    _projectManager.DeleteProjectCalendar(projectCalendarId);
                     return NoContent();
                 }
             }

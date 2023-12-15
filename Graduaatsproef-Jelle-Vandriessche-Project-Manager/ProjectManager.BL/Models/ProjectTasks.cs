@@ -9,18 +9,25 @@ namespace ProjectManager.BL.Models
 {
     public class ProjectTasks
     {
-        public ProjectTasks(int projectId, string taskName, string taskDescription, string color)
+        public ProjectTasks(int taskId, Project project, string taskName, string taskDescription, string color)
         {
-            _projectId = projectId;
+            _taskId = taskId;
+            _project = project;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
         }
 
-        public ProjectTasks(int taskId, int projectId, string taskName, string taskDescription, string color)
+        public ProjectTasks(string taskName, string taskDescription, string color)
         {
-            _taskId = taskId;
-            _projectId = projectId;
+            _taskName = taskName;
+            _taskDescription = taskDescription;
+            _color = color;
+        }
+
+        public ProjectTasks(Project project, string taskName, string taskDescription, string color)
+        {
+            _project = project;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
@@ -42,16 +49,23 @@ namespace ProjectManager.BL.Models
             }
         }
 
-        private int _projectId;
-        public int ProjectId
+        private Project _project;
+        public Project Project
         {
             get
             {
-                return _projectId;
+                return _project;
             }
             set
             {
-                _projectId = value;
+                if (value == null)
+                {
+                    throw new ProjectCalendarException("Project is invalid!");
+                }
+                else
+                {
+                    _project = value;
+                }
             }
         }
 

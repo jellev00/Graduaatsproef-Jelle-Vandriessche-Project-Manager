@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ProjectManager.API.Models;
+using ProjectManager.API.Models.Input;
+using ProjectManager.API.Models.Output;
 using ProjectManager.BL.Managers;
 using ProjectManager.BL.Models;
 
@@ -17,8 +18,9 @@ namespace ProjectManager.API.Controllers
             _userManager = userManager;
         }
 
-        [HttpGet("{Email}")]
-        public ActionResult<User> GetUserByEmail(string Email)
+        // GET
+        [HttpGet("ByEmail/{Email}")]
+        public ActionResult<UserOutput> GetUserByEmail(string Email)
         {
             try
             {
@@ -31,17 +33,42 @@ namespace ProjectManager.API.Controllers
             }
         }
 
-        [HttpPost]
-        public ActionResult<UserDTO> AddUser([FromBody] UserDTO userDTO)
+        [HttpGet("ById/{userId}")]
+        public ActionResult<UserOutput> GetUserById(int userId)
         {
             try
             {
-                var user = new User(userDTO.First_Name, userDTO.Last_Name, userDTO.Email, userDTO.Password);
+                User users = _userManager.GetUserById(userId);
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        // POST
+        [HttpPost]
+        public ActionResult<UserOutput> AddUser([FromBody] UserInput userInput)
+        {
+            try
+            {
+                User user = new User(userInput.First_Name, userInput.Last_Name, userInput.Email, userInput.Password);
                 _userManager.AddUser(user);
 
-                var createdUserDTO = new UserDTO(user.First_Name, user.Last_Name, user.Email, user.Password);
+                User addedUser = _userManager.GetUserByEmail(user.Email);
 
-                return CreatedAtAction(nameof(GetUserByEmail), new { Email = user.Email }, createdUserDTO);
+                UserOutput userOutput = new UserOutput(
+                    addedUser.UserId,
+                    addedUser.First_Name,
+                    addedUser.Last_Name,
+                    addedUser.Email,
+                    addedUser.Password,
+                    addedUser.UserTasks,
+                    addedUser.Projects
+                );
+
+                return CreatedAtAction(nameof(GetUserById), new { UserId = user.UserId }, userOutput);
             }
             catch (Exception ex)
             {
@@ -49,18 +76,95 @@ namespace ProjectManager.API.Controllers
             }
         }
 
-        [HttpDelete("{Email}")]
-        public ActionResult DeleteUser(string Email)
+        [HttpPost("AddTask/{userId}")]
+        public ActionResult<UserTasksOutput> AddTaskToUser(int userId, [FromBody] UserTasksInput tasksInput)
         {
             try
             {
-                if (!_userManager.UserExistsEmail(Email))
+                User user = _userManager.GetUserById(userId);
+
+                UserTasks task = new UserTasks(user, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color);
+                _userManager.AddTaskToUser(userId, task);
+
+                return CreatedAtAction(nameof(GetUserById), new { UserId = userId }, task);
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AddProject/{userId}")]
+        public ActionResult<ProjectOutput> AddProjectToUser(int userId, [FromBody] ProjectInput projectInput)
+        {
+            try
+            {
+                User user = _userManager.GetUserById(userId);
+
+                Project project = new Project(user, projectInput.Name, projectInput.Description, projectInput.Color);
+                _userManager.AddProjectToUser(userId, project);
+
+                return CreatedAtAction(nameof(GetUserById), new { UserId = userId }, project);
+            } catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // DELETE
+        [HttpDelete("{email}")]
+        public ActionResult DeleteUser(string email)
+        {
+            try
+            {
+                if (!_userManager.UserExistsEmail(email))
                 {
                     return NotFound();
                 }
                 else
                 {
-                    _userManager.DeleteUser(Email);
+                    _userManager.DeleteUser(email);
+                    return NoContent();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("Task/{taskId}")]
+        public ActionResult DeleteTask(int taskId)
+        {
+            try
+            {
+                if (!_userManager.UserTaskExistsId(taskId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    _userManager.DeleteTask(taskId);
+                    return NoContent();
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("Project/{projectId}")]
+        public ActionResult DeleteProject(int projectId)
+        {
+            try
+            {
+                if (!_userManager.ProjectExistsId(projectId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    _userManager.DeleteProject(projectId);
                     return NoContent();
                 }
             }

@@ -9,10 +9,19 @@ namespace ProjectManager.BL.Interfaces
 {
     public interface IProjectRepo
     {
-        //List<Project> GetAllProjects(int userId);
-        Task<List<Project>> GetAllProjects(int userId);
-        void AddProject(Project project);
-        void DeleteProject(int projectID);
-        bool ProjectExists(int projectID);
+        // POST
+        void AddTaskToProject(int projectId, ProjectTasks projectTask);
+        void AddCalendarToProject(int projectId, ProjectCalendar projectCalendar);
+
+        // GET
+        Project GetProjectById(int projectId);
+
+        // DELETE
+        void DeleteProjectTask(int projectTaskId);
+        void DeleteProjectCalendar(int projectCalendarId);
+
+        // Exists
+        bool ProjectTasksExistsId(int taskId);
+        bool ProjectCalendarExistsId(int CalendarId);
     }
 }
