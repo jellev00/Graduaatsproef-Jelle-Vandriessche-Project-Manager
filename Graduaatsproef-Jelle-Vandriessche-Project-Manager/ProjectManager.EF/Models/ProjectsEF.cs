@@ -60,7 +60,7 @@ namespace ProjectManager.EF.Models
         [Column(TypeName = "varchar(100)")]
         public string Name { get; set; }
 
-        [Column(TypeName = "varchar(300)")]
+        [Column(TypeName = "varchar(400)")]
         public string Description { get; set; }
 
         [Column(TypeName = "varchar(20)")]

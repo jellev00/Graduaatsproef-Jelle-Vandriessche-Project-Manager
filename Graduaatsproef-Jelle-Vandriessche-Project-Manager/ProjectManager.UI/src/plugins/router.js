@@ -1,8 +1,27 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
-    {path: '', name: 'home', component: () => import('../pages/Home.vue')},
-    {path: '/about', name: 'about', component: () => import('../pages/About.vue')},
+    {
+        // path: '/:userId', 
+        path: '/', 
+        name: 'home', 
+        component: () => import('../pages/Home.vue')
+    },
+    {
+        path: '/Projects', 
+        name: 'project', 
+        component: () => import('../pages/Projects.vue')
+    },
+    // {
+    //     path: '/Projects/:projectId', 
+    //     name: 'project', 
+    //     component: () => import('../pages/Projects.vue')
+    // },
+    {
+        path: '/Tasks', 
+        name: 'tasks', 
+        component: () => import('../pages/Tasks.vue')
+    },
 ]
 
 const router = createRouter({

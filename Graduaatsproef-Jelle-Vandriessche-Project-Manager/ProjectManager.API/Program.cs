@@ -22,6 +22,16 @@ namespace ProjectManager.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("http://localhost:8080/", builder =>
+                {
+                    builder.AllowAnyOrigin()
+                           .AllowAnyMethod()
+                           .AllowAnyHeader();
+                });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -33,6 +43,7 @@ namespace ProjectManager.API
 
             app.UseAuthorization();
 
+            app.UseCors("http://localhost:8080/");
 
             app.MapControllers();
 

@@ -38,7 +38,7 @@ namespace ProjectManager.EF.Models
         [Column(TypeName = "varchar(100)")]
         public string Task_Name { get; set; }
 
-        [Column(TypeName = "varchar(200)")]
+        [Column(TypeName = "varchar(400)")]
         public string Task_Description { get; set; }
 
         [Column(TypeName = "varchar(20)")]
