@@ -116,48 +116,97 @@
 
 *[TODO]* -  Implementing the Delete Functionality
 
+
 == Entry 8:
 * *Project Name*: [Project Manager]
 * *Date*: [18/11/2023]
-* *Work-Time*: [1u 50min]
-
-*[TODO]* - Electron (maken van een kleine desktop app)
-
-== Entry 9:
-* *Project Name*: [Project Manager]
-* *Date*: [18/11/2023]
-* *Work-Time*: [2u 35min]
-
-*[TODO]* - Tailwind CSS
-
-
-== Entry 10:
-// hier moet nog tijd bij komen en de tijd moet dan ook nog opgeteld worden bij de totale tijd
-* *Project Name*: [Project Manager]
-* *Date*: [12/11/2023]
-* *Work-Time*: [6u 55min]
+* *Work-Time*: [8u 55min]
 
 *[TODO]* - Ontwerpen van de schermen voor de applicatie
 
-== Entry 11:
-// hier moet nog tijd bij komen en de tijd moet dan ook nog opgeteld worden bij de totale tijd
+== Entry 9:
 * *Project Name*: [Project Manager]
-* *Date*: [12/11/2023]
-* *Work-Time*: [4u 35min]
+* *Date*: [20/11/2023]
+* *Work-Time*: [6u 25min]
 
 *[TODO]* - DataLaag (Entity Framework)
 
-== Entry 12:
-// hier moet nog tijd bij komen en de tijd moet dan ook nog opgeteld worden bij de totale tijd
+== Entry 10:
 * *Project Name*: [Project Manager]
-* *Date*: [12/11/2023]
-* *Work-Time*: [5u 20min]
+* *Date*: [21/11/2023]
+* *Work-Time*: [6u 55min]
 
 *[TODO]* - DataLaag (Entity Framework)
 
 *[TODO]* - BusinessLaag
 
+== Entry 11:
+* *Project Name*: [Project Manager]
+* *Date*: [24/11/2023]
+* *Work-Time*: [6u 45min]
+
+*[TODO]* - BusinessLaag
+
+== Entry 12:
+* *Project Name*: [Project Manager]
+* *Date*: [25/11/2023]
+* *Work-Time*: [5u 15min]
+
+*[TODO]* - REST API
+
+== Entry 13:
+* *Project Name*: [Project Manager]
+* *Date*: [29/11/2023]
+* *Work-Time*: [4u 35min]
+
+*[TODO]* - REST API
+
+== Entry 14:
+* *Project Name*: [Project Manager]
+* *Date*: [09/12/2023]
+* *Work-Time*: [4u 0min]
+
+*[TODO]* - DataLaag (Entity Framework) voledig omgooien
+
+== Entry 15:
+* *Project Name*: [Project Manager]
+* *Date*: [12/12/2023]
+* *Work-Time*: [5u 15min]
+
+*[TODO]* - DataLaag (Entity Framework) voledig omgooien
+
+*[TODO]* - BusinessLaag voledig omgooien
+
+== Entry 16:
+* *Project Name*: [Project Manager]
+* *Date*: [13/12/2023]
+* *Work-Time*: [3u 45min]
+
+*[TODO]* - BusinessLaag voledig omgooien
+
+== Entry 17:
+* *Project Name*: [Project Manager]
+* *Date*: [15/12/2023]
+* *Work-Time*: [5u 30min]
+
+*[TODO]* - REST API voledig omgooien
+
+== Entry 18:
+* *Project Name*: [Project Manager]
+* *Date*: [16/12/2023]
+* *Work-Time*: [7u 25min]
+
+*[TODO]* - Frontend (Vue.js & Electron)
+
+== Entry 19:
+* *Project Name*: [Project Manager]
+* *Date*: [16/12/2023]
+* *Work-Time*: [6u 50min]
+
+*[TODO]* - Frontend (Vue.js & Electron)
+
+
 == Total working hours
 
 * *Project Name*: [Project Manager]
-* *Work-Time*: [23u 00min]
+* *Work-Time*: [94u 35min]
