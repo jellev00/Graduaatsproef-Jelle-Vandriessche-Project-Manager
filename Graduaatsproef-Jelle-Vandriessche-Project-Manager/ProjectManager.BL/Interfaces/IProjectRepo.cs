@@ -11,17 +11,14 @@ namespace ProjectManager.BL.Interfaces
     {
         // POST
         void AddTaskToProject(int projectId, ProjectTasks projectTask);
-        void AddCalendarToProject(int projectId, ProjectCalendar projectCalendar);
 
         // GET
         Project GetProjectById(int projectId);
 
         // DELETE
         void DeleteProjectTask(int projectTaskId);
-        void DeleteProjectCalendar(int projectCalendarId);
 
         // Exists
         bool ProjectTasksExistsId(int taskId);
-        bool ProjectCalendarExistsId(int CalendarId);
     }
 }

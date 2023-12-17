@@ -46,28 +46,10 @@ namespace ProjectManager.API.Controllers
             {
                 Project project = _projectManager.GetProjectById(projectId);
 
-                ProjectTasks task = new ProjectTasks(project, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color);
+                ProjectTasks task = new ProjectTasks(project, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color, tasksInput.Date);
                 _projectManager.AddTaskToProject(projectId, task);
 
                 return CreatedAtAction(nameof(GetProjectById), new { ProjectId = projectId }, task);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPost("AddCalendar/{projectId}")]
-        public ActionResult<ProjectCalendarOutput> AddCalendarToProject(int projectId, [FromBody] ProjectCalendarInput calendarInput)
-        {
-            try
-            {
-                Project project = _projectManager.GetProjectById(projectId);
-
-                ProjectCalendar calendar = new ProjectCalendar(project, calendarInput.Name, calendarInput.Description, calendarInput.Date);
-                _projectManager.AddCalendarToProject(projectId, calendar);
-
-                return CreatedAtAction(nameof(GetProjectById), new { ProjectId = projectId }, calendar);
             }
             catch (Exception ex)
             {
@@ -88,27 +70,6 @@ namespace ProjectManager.API.Controllers
                 else
                 {
                     _projectManager.DeleteProjectTask(projectTaskId);
-                    return NoContent();
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpDelete("Calendar/{projectCalendarId}")]
-        public ActionResult DeleteProjectCalendar(int projectCalendarId)
-        {
-            try
-            {
-                if (!_projectManager.ProjectCalendarExistsId(projectCalendarId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    _projectManager.DeleteProjectCalendar(projectCalendarId);
                     return NoContent();
                 }
             }

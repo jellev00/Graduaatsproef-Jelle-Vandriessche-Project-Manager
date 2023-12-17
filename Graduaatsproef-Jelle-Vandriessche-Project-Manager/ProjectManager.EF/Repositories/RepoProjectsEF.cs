@@ -56,52 +56,6 @@ namespace ProjectManager.EF.Repositories
             }
         }
 
-        public void AddCalendarToProject(int projectId, ProjectCalendar projectCalendar)
-        {
-            try
-            {
-                ProjectsEF project = ctx.Projects.Find(projectId);
-
-                if (project == null)
-                {
-                    throw new RepoProjectsEFException($"project with ID {projectId} not found.");
-                }
-
-                if (project.ProjectCalendar == null)
-                {
-                    project.ProjectCalendar = new List<ProjectCalendarEF>();
-                }
-
-                ProjectCalendarEF calendarEF = MapProjectCalendarEF.MapToDB(projectCalendar, ctx);
-
-                project.ProjectCalendar.Add(calendarEF);
-
-                SaveAndClear();
-            }
-            catch (Exception ex)
-            {
-                throw new RepoProjectsEFException("AddTaskToProject", ex);
-            }
-        }
-
-        public void DeleteProjectCalendar(int projectCalendarId)
-        {
-            try
-            {
-                var CalendarToDelete = ctx.ProjectCalendar.SingleOrDefault(x => x.Project_CalendarID == projectCalendarId);
-
-                if (CalendarToDelete != null)
-                {
-                    ctx.ProjectCalendar.Remove(CalendarToDelete);
-                    SaveAndClear();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new RepoProjectsEFException("DeleteProjectCalendar", ex);
-            }
-        }
-
         public void DeleteProjectTask(int projectTaskId)
         {
             try
@@ -124,23 +78,11 @@ namespace ProjectManager.EF.Repositories
         {
             try
             {
-                return MapProjectEF.MapToDomain(ctx.Projects.Where(x => x.Project_ID == projectId).Include(x => x.User).Include(x => x.ProjectTasks).Include(x => x.ProjectCalendar).AsNoTracking().FirstOrDefault());
+                return MapProjectEF.MapToDomain(ctx.Projects.Where(x => x.Project_ID == projectId).Include(x => x.User).Include(x => x.ProjectTasks).AsNoTracking().FirstOrDefault());
             }
             catch (Exception ex)
             {
                 throw new RepoProjectsEFException("GetProjectById", ex);
-            }
-        }
-
-        public bool ProjectCalendarExistsId(int CalendarId)
-        {
-            try
-            {
-                return ctx.ProjectCalendar.Any(x => x.Project_CalendarID == CalendarId);
-            }
-            catch (Exception ex)
-            {
-                throw new RepoProjectsEFException("ProjectCalendarExistsId", ex);
             }
         }
 

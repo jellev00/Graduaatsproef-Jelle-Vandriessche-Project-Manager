@@ -9,7 +9,7 @@ namespace ProjectManager.BL.Models
 {
     public class Project
     {
-        public Project(int projectId, User user, string name, string description, string color, List<ProjectTasks> projectTasks, List<ProjectCalendar> projectCalendars)
+        public Project(int projectId, User user, string name, string description, string color, List<ProjectTasks> projectTasks)
         {
             _projectId = projectId;
             _user = user;
@@ -17,7 +17,6 @@ namespace ProjectManager.BL.Models
             _description = description;
             _color = color;
             _projectTasks = projectTasks;
-            _projectCalendar = projectCalendars;
         }
 
         public Project(string name, string description, string color)
@@ -158,26 +157,6 @@ namespace ProjectManager.BL.Models
                 else
                 {
                     _projectTasks = value;
-                }
-            }
-        }
-
-        private List<ProjectCalendar> _projectCalendar;
-        public List<ProjectCalendar> ProjectCalendar
-        {
-            get
-            {
-                return _projectCalendar;
-            }
-            set
-            {
-                if (value == null)
-                {
-                    throw new ProjectsException("ProjectCalendar can't be null!");
-                }
-                else
-                {
-                    _projectCalendar = value;
                 }
             }
         }

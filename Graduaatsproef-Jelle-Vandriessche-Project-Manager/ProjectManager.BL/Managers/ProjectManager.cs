@@ -41,26 +41,6 @@ namespace ProjectManager.BL.Managers
                 throw new ProjectsException("AddTaskToProject", ex);
             }
         }
-        public void AddCalendarToProject(int projectId, ProjectCalendar projectCalendar)
-        {
-            try
-            {
-                if (projectCalendar == null)
-                {
-                    throw new ProjectsException("AddCalendarToProject");
-                }
-                if (_repo.ProjectCalendarExistsId(projectCalendar.CalendarId))
-                {
-                    throw new ProjectsException("AddCalendarToProject - Calendar Already exists!");
-                }
-
-                _repo.AddCalendarToProject(projectId, projectCalendar);
-            }
-            catch (Exception ex)
-            {
-                throw new ProjectsException("AddCalendarToProject", ex);
-            }
-        }
 
         // GET
         public Project GetProjectById(int projectId)
@@ -95,21 +75,6 @@ namespace ProjectManager.BL.Managers
                 throw new ProjectsException("DeleteProjectTask", ex);
             }
         }
-        public void DeleteProjectCalendar(int projectCalendarId)
-        {
-            try
-            {
-                if (!_repo.ProjectCalendarExistsId(projectCalendarId))
-                {
-                    throw new ProjectsException("DeleteProjectTask - Calendar doesn't exist!");
-                }
-                _repo.DeleteProjectCalendar(projectCalendarId);
-            }
-            catch (Exception ex)
-            {
-                throw new ProjectsException("DeleteProjectTask", ex);
-            }
-        }
 
         // Exists
         public bool ProjectTasksExistsId(int taskId)
@@ -121,17 +86,6 @@ namespace ProjectManager.BL.Managers
             catch (Exception ex)
             {
                 throw new ProjectsException("ProjectTasksExistsId", ex);
-            }
-        }
-        public bool ProjectCalendarExistsId(int CalendarId)
-        {
-            try
-            {
-                return _repo.ProjectCalendarExistsId(CalendarId);
-            }
-            catch (Exception ex)
-            {
-                throw new ProjectsException("ProjectCalendarExistsId", ex);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace ProjectManager.EF.Mapper
             {
                 User user = new User(db.User.User_ID, db.User.First_Name, db.User.Last_Name, db.User.Email, db.User.Password);
 
-                return new UserTasks(db.Task_ID, user, db.Task_Name, db.Task_Description, db.Color);
+                return new UserTasks(db.Task_ID, user, db.Task_Name, db.Task_Description, db.Color, db.Date);
             }
             catch (Exception ex)
             {
@@ -37,7 +37,7 @@ namespace ProjectManager.EF.Mapper
                     throw new MapEFException($"User with ID {uT.User.UserId} not found.");
                 }
 
-                return new UserTasksEF(user, uT.TaskName, uT.TaskDescription, uT.Color);
+                return new UserTasksEF(user, uT.TaskName, uT.TaskDescription, uT.Color, uT.Date);
             }
             catch (Exception ex)
             {

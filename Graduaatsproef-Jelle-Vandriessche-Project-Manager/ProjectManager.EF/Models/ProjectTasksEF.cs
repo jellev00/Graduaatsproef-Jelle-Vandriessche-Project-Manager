@@ -14,21 +14,23 @@ namespace ProjectManager.EF.Models
         {
         }
 
-        public ProjectTasksEF(ProjectsEF project, string task_Name, string task_Description, string color)
+        public ProjectTasksEF(ProjectsEF project, string task_Name, string task_Description, string color, DateTime date)
         {
             Project = project;
             Task_Name = task_Name;
             Task_Description = task_Description;
             Color = color;
+            Date = date;
         }
 
-        public ProjectTasksEF(int project_Task_ID, ProjectsEF project, string task_Name, string task_Description, string color)
+        public ProjectTasksEF(int project_Task_ID, ProjectsEF project, string task_Name, string task_Description, string color, DateTime date)
         {
             Project_Task_ID = project_Task_ID;
             Project = project;
             Task_Name= task_Name;
             Task_Description = task_Description;
             Color = color;
+            Date = date;
         }
 
         [Key]
@@ -43,6 +45,8 @@ namespace ProjectManager.EF.Models
 
         [Column(TypeName = "varchar(20)")]
         public string Color { get; set; }
+
+        public DateTime Date { get; set; }
 
         public ProjectsEF Project { get; set; }
     }

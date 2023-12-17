@@ -19,7 +19,6 @@ namespace ProjectManager.EF.Mapper
                 User user = new User(db.User.User_ID, db.User.First_Name, db.User.Last_Name, db.User.Email, db.User.Password);
 
                 List<ProjectTasks> projectTasks = new List<ProjectTasks>();
-                List<ProjectCalendar> projectCalendars = new List<ProjectCalendar>();
 
                 if (db.ProjectTasks != null)
                 {
@@ -27,25 +26,13 @@ namespace ProjectManager.EF.Mapper
                     {
                         Project project = new Project(pT.Project.Project_ID, user, pT.Project.Name, pT.Project.Description, pT.Project.Color);
 
-                        ProjectTasks projectTask = new ProjectTasks(pT.Project_Task_ID, project, pT.Task_Name, pT.Task_Description, pT.Color);
+                        ProjectTasks projectTask = new ProjectTasks(pT.Project_Task_ID, project, pT.Task_Name, pT.Task_Description, pT.Color, pT.Date);
 
                         projectTasks.Add(projectTask);
                     }
                 }
 
-                if (db.ProjectCalendar != null)
-                {
-                    foreach (ProjectCalendarEF pC in db.ProjectCalendar)
-                    {
-                        Project project = new Project(pC.Project.Project_ID, user, pC.Project.Name, pC.Project.Description, pC.Project.Color);
-
-                        ProjectCalendar projectCalendar = new ProjectCalendar(pC.Project_CalendarID, project, pC.Name, pC.Description, pC.Date);
-
-                        projectCalendars.Add(projectCalendar);
-                    }
-                }
-
-                return new Project(db.Project_ID, user, db.Name, db.Description, db.Color, projectTasks, projectCalendars);
+                return new Project(db.Project_ID, user, db.Name, db.Description, db.Color, projectTasks);
             }
             catch (Exception ex)
             {
@@ -69,7 +56,6 @@ namespace ProjectManager.EF.Mapper
                 }
 
                 List<ProjectTasksEF> projectTasks = new List<ProjectTasksEF>();
-                List<ProjectCalendarEF> projectCalendars = new List<ProjectCalendarEF>();
 
                 if (p.ProjectTasks != null)
                 {
@@ -81,26 +67,16 @@ namespace ProjectManager.EF.Mapper
                     }
                 }
 
-                if (p.ProjectCalendar != null)
-                {
-                    foreach (ProjectCalendar pC in p.ProjectCalendar.ToList())
-                    {
-                        ProjectCalendarEF projectCalendar = MapProjectCalendarEF.MapToDB(pC, ctx);
-
-                        projectCalendars.Add(projectCalendar);
-                    }
-                }
-
                 ProjectsEF project = ctx.Projects
                     .Include(proj => proj.User) // Include the User property
                     .FirstOrDefault(proj => proj.Project_ID == p.ProjectId);
 
                 if (p.ProjectId > 0)
                 {
-                    project = new ProjectsEF(p.ProjectId, user, p.Name, p.Description, p.Color, projectTasks, projectCalendars);
+                    project = new ProjectsEF(p.ProjectId, user, p.Name, p.Description, p.Color, projectTasks);
                 } else
                 {
-                    project = new ProjectsEF(user, p.Name, p.Description, p.Color, projectTasks, projectCalendars);
+                    project = new ProjectsEF(user, p.Name, p.Description, p.Color, projectTasks);
 
                 }
 

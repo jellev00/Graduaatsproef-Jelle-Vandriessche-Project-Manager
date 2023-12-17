@@ -20,7 +20,6 @@ namespace ProjectManager.EF.Models
         public DbSet<UserTasksEF> UserTasks { get; set; }
         public DbSet<ProjectsEF> Projects { get; set; }
         public DbSet<ProjectTasksEF> ProjectTasks { get; set; }
-        public DbSet<ProjectCalendarEF> ProjectCalendar { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

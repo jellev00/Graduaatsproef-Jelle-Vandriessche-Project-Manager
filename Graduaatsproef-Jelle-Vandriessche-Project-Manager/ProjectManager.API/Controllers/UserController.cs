@@ -83,7 +83,7 @@ namespace ProjectManager.API.Controllers
             {
                 User user = _userManager.GetUserById(userId);
 
-                UserTasks task = new UserTasks(user, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color);
+                UserTasks task = new UserTasks(user, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color, tasksInput.Date);
                 _userManager.AddTaskToUser(userId, task);
 
                 return CreatedAtAction(nameof(GetUserById), new { UserId = userId }, task);

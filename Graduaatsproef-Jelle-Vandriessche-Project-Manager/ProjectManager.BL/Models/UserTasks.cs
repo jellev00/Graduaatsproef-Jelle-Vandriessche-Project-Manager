@@ -9,28 +9,31 @@ namespace ProjectManager.BL.Models
 {
     public class UserTasks
     {
-        public UserTasks(int taskId, User user, string taskName, string taskDescription, string color)
+        public UserTasks(int taskId, User user, string taskName, string taskDescription, string color, DateTime date)
         {
             _taskId = taskId;
             _user = user;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
+            _date = date;
         }
 
-        public UserTasks(string taskName, string taskDescription, string color)
+        public UserTasks(string taskName, string taskDescription, string color, DateTime date)
         {
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
+            _date = date;
         }
 
-        public UserTasks(User user, string taskName, string taskDescription, string color)
+        public UserTasks(User user, string taskName, string taskDescription, string color, DateTime date)
         {
             _user = user;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
+            _date = date;
         }
 
         private int _taskId;
@@ -127,6 +130,26 @@ namespace ProjectManager.BL.Models
                 else
                 {
                     _color = value;
+                }
+            }
+        }
+
+        private DateTime _date;
+        public DateTime Date
+        {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                if (value < DateTime.Now)
+                {
+                    throw new ProjectTasksException("Date is invalid!");
+                }
+                else
+                {
+                    _date = value;
                 }
             }
         }

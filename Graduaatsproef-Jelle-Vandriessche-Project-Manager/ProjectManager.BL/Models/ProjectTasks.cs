@@ -9,28 +9,31 @@ namespace ProjectManager.BL.Models
 {
     public class ProjectTasks
     {
-        public ProjectTasks(int taskId, Project project, string taskName, string taskDescription, string color)
+        public ProjectTasks(int taskId, Project project, string taskName, string taskDescription, string color, DateTime date)
         {
             _taskId = taskId;
             _project = project;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
+            _date = date;
         }
 
-        public ProjectTasks(string taskName, string taskDescription, string color)
+        public ProjectTasks(string taskName, string taskDescription, string color, DateTime date)
         {
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
+            _date = date;
         }
 
-        public ProjectTasks(Project project, string taskName, string taskDescription, string color)
+        public ProjectTasks(Project project, string taskName, string taskDescription, string color, DateTime date)
         {
             _project = project;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
+            _date = date;
         }
 
         private int _taskId;
@@ -60,7 +63,7 @@ namespace ProjectManager.BL.Models
             {
                 if (value == null)
                 {
-                    throw new ProjectCalendarException("Project is invalid!");
+                    throw new ProjectTasksException("Project is invalid!");
                 }
                 else
                 {
@@ -125,6 +128,26 @@ namespace ProjectManager.BL.Models
                 else
                 {
                     _color = value;
+                }
+            }
+        }
+
+        private DateTime _date;
+        public DateTime Date
+        {
+            get
+            {
+                return _date;
+            }
+            set
+            {
+                if (value < DateTime.Now)
+                {
+                    throw new ProjectTasksException("Date is invalid!");
+                }
+                else
+                {
+                    _date = value;
                 }
             }
         }

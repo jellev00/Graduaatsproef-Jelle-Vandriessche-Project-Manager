@@ -32,7 +32,7 @@ namespace ProjectManager.EF.Models
             Color = color;
         }
 
-        public ProjectsEF(int project_ID, UserEF user, string name, string description, string color, List<ProjectTasksEF> projectTasks, List<ProjectCalendarEF> projectCalendar)
+        public ProjectsEF(int project_ID, UserEF user, string name, string description, string color, List<ProjectTasksEF> projectTasks)
         {
             Project_ID = project_ID;
             Name = name;
@@ -40,17 +40,15 @@ namespace ProjectManager.EF.Models
             Color = color;
             User = user;
             ProjectTasks = projectTasks;
-            ProjectCalendar = projectCalendar;
         }
 
-        public ProjectsEF(UserEF user, string name, string description, string color, List<ProjectTasksEF> projectTasks, List<ProjectCalendarEF> projectCalendar)
+        public ProjectsEF(UserEF user, string name, string description, string color, List<ProjectTasksEF> projectTasks)
         {
             Name = name;
             Description = description;
             Color = color;
             User = user;
             ProjectTasks = projectTasks;
-            ProjectCalendar = projectCalendar;
         }
 
         [Key]
@@ -69,6 +67,5 @@ namespace ProjectManager.EF.Models
         public UserEF User { get; set; }
 
         public List<ProjectTasksEF> ProjectTasks { get; set; }
-        public List<ProjectCalendarEF> ProjectCalendar { get; set; }
     }
 }
