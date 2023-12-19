@@ -23,6 +23,9 @@ namespace ProjectManager.BL.Interfaces
         void DeleteTask(int taskId);
         void DeleteProject(int projectId);
 
+        // UPDATE
+        void UpdateTaskStatus(int taskId, bool taskStatus);
+
         // EXISTS
         bool UserExistsEmail(string email);
         bool UserExistsId(int userId);

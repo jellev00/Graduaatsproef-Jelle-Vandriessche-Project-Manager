@@ -23,7 +23,7 @@ namespace ProjectManager.EF.Mapper
                     foreach (UserTasksEF uT in db.UserTasks)
                     {
                         User user = new User(uT.User.User_ID, uT.User.First_Name, uT.User.Last_Name, uT.User.Email, uT.User.Password);
-                        UserTasks userTask = new UserTasks(uT.Task_ID, user, uT.Task_Name, uT.Task_Description, uT.Color, uT.Date);
+                        UserTasks userTask = new UserTasks(uT.Task_ID, user, uT.Task_Name, uT.Task_Description, uT.Color, uT.Date, uT.Status);
 
                         userTasks.Add(userTask);
                     }

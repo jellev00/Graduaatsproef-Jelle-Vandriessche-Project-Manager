@@ -14,16 +14,17 @@ namespace ProjectManager.EF.Models
         {
         }
 
-        public UserTasksEF(UserEF user, string task_Name, string task_Description, string color, DateTime date)
+        public UserTasksEF(UserEF user, string task_Name, string task_Description, string color, DateTime date, bool status)
         {
             User = user;
             Task_Name = task_Name;
             Task_Description = task_Description;
             Color = color;
             Date = date;
+            Status = status;
         }
 
-        public UserTasksEF(int task_ID, UserEF user, string task_Name, string task_Description, string color, DateTime date)
+        public UserTasksEF(int task_ID, UserEF user, string task_Name, string task_Description, string color, DateTime date, bool status)
         {
             Task_ID = task_ID;
             User = user;
@@ -31,6 +32,7 @@ namespace ProjectManager.EF.Models
             Task_Description = task_Description;
             Color = color;
             Date = date;
+            Status = status;
         }
 
         [Key]
@@ -49,5 +51,7 @@ namespace ProjectManager.EF.Models
         public DateTime Date { get; set; }
 
         public UserEF User { get; set; }
+
+        public bool Status { get; set; }
     }
 }

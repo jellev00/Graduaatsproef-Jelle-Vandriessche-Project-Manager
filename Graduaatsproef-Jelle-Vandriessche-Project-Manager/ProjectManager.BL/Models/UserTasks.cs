@@ -9,7 +9,7 @@ namespace ProjectManager.BL.Models
 {
     public class UserTasks
     {
-        public UserTasks(int taskId, User user, string taskName, string taskDescription, string color, DateTime date)
+        public UserTasks(int taskId, User user, string taskName, string taskDescription, string color, DateTime date, bool status)
         {
             _taskId = taskId;
             _user = user;
@@ -17,23 +17,26 @@ namespace ProjectManager.BL.Models
             _taskDescription = taskDescription;
             _color = color;
             _date = date;
+            _status = status;
         }
 
-        public UserTasks(string taskName, string taskDescription, string color, DateTime date)
+        public UserTasks(string taskName, string taskDescription, string color, DateTime date, bool status)
         {
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
-            _date = date;
+            Date = date;
+            _status = status;
         }
 
-        public UserTasks(User user, string taskName, string taskDescription, string color, DateTime date)
+        public UserTasks(User user, string taskName, string taskDescription, string color, DateTime date, bool status)
         {
             _user = user;
             _taskName = taskName;
             _taskDescription = taskDescription;
             _color = color;
-            _date = date;
+            Date = date;
+            _status = status;
         }
 
         private int _taskId;
@@ -152,6 +155,13 @@ namespace ProjectManager.BL.Models
                     _date = value;
                 }
             }
+        }
+
+        private bool _status;
+        public bool Status
+        {
+            get { return _status; }
+            set { _status = value; }
         }
     }
 }

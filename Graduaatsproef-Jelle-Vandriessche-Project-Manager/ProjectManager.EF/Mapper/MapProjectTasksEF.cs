@@ -20,7 +20,7 @@ namespace ProjectManager.EF.Mapper
 
                 Project project = new Project(db.Project.Project_ID, user, db.Project.Name, db.Project.Description, db.Project.Color);
 
-                return new ProjectTasks(db.Project_Task_ID, project, db.Task_Name, db.Task_Description, db.Color, db.Date);
+                return new ProjectTasks(db.Project_Task_ID, project, db.Task_Name, db.Task_Description, db.Color, db.Date, db.Status);
             } catch (Exception ex)
             {
                 throw new MapEFException("MapProjectTasksEF - MapToDomain", ex);
@@ -33,7 +33,7 @@ namespace ProjectManager.EF.Mapper
             {
                 ProjectsEF project = ctx.Projects.Where(x => x.Project_ID == pT.Project.ProjectId).Include(x => x.User).FirstOrDefault();
 
-                return new ProjectTasksEF(project, pT.TaskName, pT.TaskDescription, pT.Color, pT.Date);
+                return new ProjectTasksEF(project, pT.TaskName, pT.TaskDescription, pT.Color, pT.Date, pT.Status);
             } catch (Exception ex)
             {
                 throw new MapEFException("MapProjectTasksEF - MapToDB", ex);

@@ -158,6 +158,19 @@ namespace ProjectManager.BL.Managers
             }
         }
 
+        // UPDATE
+        public void UpdateTaskStatus(int taskId, bool newStatus)
+        {
+            try
+            {
+                _repo.UpdateTaskStatus(taskId, newStatus);
+            }
+            catch (Exception ex)
+            {
+                throw new UserException("UpdateTaskStatus", ex);
+            }
+        }
+
         // EXISTS
         public bool UserExistsEmail(string email)
         {

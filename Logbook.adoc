@@ -124,28 +124,34 @@
 
 *[TODO]* - Ontwerpen van de schermen voor de applicatie
 
+*[TODO]* - Electron
+
+*[TODO]* - Tailwindcss
+
+
 == Entry 9:
 * *Project Name*: [Project Manager]
 * *Date*: [20/11/2023]
 * *Work-Time*: [6u 25min]
 
-*[TODO]* - DataLaag (Entity Framework)
+*[TODO]* - BusinessLaag
+
 
 == Entry 10:
 * *Project Name*: [Project Manager]
 * *Date*: [21/11/2023]
 * *Work-Time*: [6u 55min]
 
-*[TODO]* - DataLaag (Entity Framework)
-
 *[TODO]* - BusinessLaag
+
+*[TODO]* - DataLaag (Entity Framework)
 
 == Entry 11:
 * *Project Name*: [Project Manager]
 * *Date*: [24/11/2023]
 * *Work-Time*: [6u 45min]
 
-*[TODO]* - BusinessLaag
+*[TODO]* - DataLaag (Entity Framework)
 
 == Entry 12:
 * *Project Name*: [Project Manager]
@@ -166,30 +172,30 @@
 * *Date*: [09/12/2023]
 * *Work-Time*: [4u 0min]
 
-*[TODO]* - DataLaag (Entity Framework) voledig omgooien
+*[TODO]* - BusinessLaag volledig omgooien
 
 == Entry 15:
 * *Project Name*: [Project Manager]
 * *Date*: [12/12/2023]
 * *Work-Time*: [5u 15min]
 
-*[TODO]* - DataLaag (Entity Framework) voledig omgooien
+*[TODO]* - BusinessLaag volledig omgooien
 
-*[TODO]* - BusinessLaag voledig omgooien
+*[TODO]* - DataLaag (Entity Framework) volledig omgooien
 
 == Entry 16:
 * *Project Name*: [Project Manager]
 * *Date*: [13/12/2023]
-* *Work-Time*: [3u 45min]
+* *Work-Time*: [4u 45min]
 
-*[TODO]* - BusinessLaag voledig omgooien
+*[TODO]* - DataLaag (Entity Framework) volledig omgooien
 
 == Entry 17:
 * *Project Name*: [Project Manager]
 * *Date*: [15/12/2023]
 * *Work-Time*: [5u 30min]
 
-*[TODO]* - REST API voledig omgooien
+*[TODO]* - REST API volledig omgooien
 
 == Entry 18:
 * *Project Name*: [Project Manager]
@@ -200,13 +206,27 @@
 
 == Entry 19:
 * *Project Name*: [Project Manager]
-* *Date*: [16/12/2023]
+* *Date*: [17/12/2023]
 * *Work-Time*: [6u 50min]
 
 *[TODO]* - Frontend (Vue.js & Electron)
+
+== Entry 19:
+* *Project Name*: [Project Manager]
+* *Date*: [17/12/2023]
+* *Work-Time*: [5u 45min]
+
+*[TODO]* - BusinessLaag kleine aanpassing
+
+*[TODO]* - DataLaag (Entity Framework) kleine aanpassing
+
+*[TODO]* - REST API kleine aanpassing
+
+*[TODO]* - Frontend (Vue.js & Electron) kleine aanpassing
+
 
 
 == Total working hours
 
 * *Project Name*: [Project Manager]
-* *Work-Time*: [94u 35min]
+* *Work-Time*: [101u 20min]

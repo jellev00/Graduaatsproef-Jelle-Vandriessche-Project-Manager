@@ -46,7 +46,7 @@ namespace ProjectManager.API.Controllers
             {
                 Project project = _projectManager.GetProjectById(projectId);
 
-                ProjectTasks task = new ProjectTasks(project, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color, tasksInput.Date);
+                ProjectTasks task = new ProjectTasks(project, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color, tasksInput.Date, false);
                 _projectManager.AddTaskToProject(projectId, task);
 
                 return CreatedAtAction(nameof(GetProjectById), new { ProjectId = projectId }, task);
@@ -72,6 +72,23 @@ namespace ProjectManager.API.Controllers
                     _projectManager.DeleteProjectTask(projectTaskId);
                     return NoContent();
                 }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // UPDATE
+        [HttpPut("UpdateTaskStatus/{taskId}")]
+        public ActionResult UpdateTaskStatus(int taskId, [FromBody] bool newStatus)
+        {
+            try
+            {
+                // Find the task by taskId and update its status
+                _projectManager.UpdateTaskStatus(taskId, newStatus);
+
+                return Ok("Task status updated successfully");
             }
             catch (Exception ex)
             {

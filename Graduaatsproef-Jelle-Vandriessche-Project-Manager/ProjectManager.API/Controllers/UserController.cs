@@ -83,7 +83,7 @@ namespace ProjectManager.API.Controllers
             {
                 User user = _userManager.GetUserById(userId);
 
-                UserTasks task = new UserTasks(user, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color, tasksInput.Date);
+                UserTasks task = new UserTasks(user, tasksInput.TaskName, tasksInput.TaskDescription, tasksInput.Color, tasksInput.Date, false);
                 _userManager.AddTaskToUser(userId, task);
 
                 return CreatedAtAction(nameof(GetUserById), new { UserId = userId }, task);
@@ -167,6 +167,23 @@ namespace ProjectManager.API.Controllers
                     _userManager.DeleteProject(projectId);
                     return NoContent();
                 }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        // UPDATE
+        [HttpPut("UpdateTaskStatus/{taskId}")]
+        public ActionResult UpdateTaskStatus(int taskId, [FromBody] bool newStatus)
+        {
+            try
+            {
+                // Find the task by taskId and update its status
+                _userManager.UpdateTaskStatus(taskId, newStatus);
+
+                return Ok("Task status updated successfully");
             }
             catch (Exception ex)
             {

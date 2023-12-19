@@ -22,21 +22,30 @@ const closeModal = () => {
 
 const addTask = async () => {
     try {
-        const response = await fetch(`http://localhost:5035/api/Project/AddTask/${project.projectId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(task),
-        });
-
-        if (response.ok) {
-            // Successfully added the task, you can handle the response here if needed
-            alert('Task added successfully');
-            closeModal();
+        if (!task.taskName || !task.taskDescription || !task.color || !task.date) {
+            alert('Please fill in all the required fields');
         } else {
-            // Handle error
-            alert('Failed to add task');
+            const response = await fetch(`http://localhost:5035/api/Project/AddTask/${project.projectId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(task),
+            });
+
+            if (response.ok) {
+                // Successfully added the task, you can handle the response here if needed
+                alert('Task added successfully');
+                emit('taskAdded');
+                closeModal();
+            } else {
+                // Handle error
+                if (task.date < Date()) {
+                    alert('The date is in the past!');
+                } else {
+                    alert('Failed to add task');
+                }
+            }
         }
     } catch (error) {
         // Handle network error

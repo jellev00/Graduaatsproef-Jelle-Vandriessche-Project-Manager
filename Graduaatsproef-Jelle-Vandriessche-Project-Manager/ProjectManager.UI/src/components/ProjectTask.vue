@@ -36,6 +36,7 @@ const deleteTask = async (taskId) => {
         const response = await axios.delete(`http://localhost:5035/api/Project/Task/${taskId}`);
         if (response.status === 204) {
             alert(`Task with ID ${taskId} deleted successfully.`);
+            fetchProjectDetails(props.projectId);
             window.location.reload();
         } else {
             alert(`Failed to delete task with ID ${taskId}. ${response.status}`);
@@ -45,12 +46,37 @@ const deleteTask = async (taskId) => {
     }
 };
 
+const updateTaskStatus = async (taskId, newStatus) => {
+    try {
+        const response = await axios.put(
+            `http://localhost:5035/api/Project/UpdateTaskStatus/${taskId}`,
+            JSON.stringify(newStatus),
+            { headers: { 'Content-Type': 'application/json' } }
+        );
+
+        if (response.status === 200) {
+            // Update the local userData with the latest task statuses
+            fetchProjectDetails();
+        } else {
+            alert(`Failed to update task status. ${response.status}`);
+        }
+    } catch (error) {
+        console.error('Error updating task status:', error);
+        alert('Error updating task status. See console for details.');
+    }
+};
+
 const openModal = () => {
     showModal.value = true;
 };
 
 const closeModal = () => {
     showModal.value = false;
+    // window.location.reload();
+};
+
+const handleTaskAdded = () => {
+    fetchProjectDetails(props.projectId);
     window.location.reload();
 };
 
@@ -71,7 +97,7 @@ const daysLeft = (taskDate) => {
                 <p class="text-slate-500">Tasks</p>
                 <div v-for="task in projectData.projectTasks" :key="task.taskId" class="flex items-center w-28 my-4">
                     <div v-if="task" class="w-2 h-2 rounded-full mr-5" :style="{ backgroundColor: task.color }"></div>
-                    <p v-if="task" class="text-sm">{{ task.taskName }}</p>
+                    <p v-if="task" class="text-sm" :style="{ 'text-decoration': task.status ? 'line-through' : 'none' }">{{ task.taskName }}</p>
                 </div>
             </div>
             <div class="flex justify-center">
@@ -81,7 +107,7 @@ const daysLeft = (taskDate) => {
                 </button>
             </div>
         </div>
-        <add-project-task v-if="showModal" @close="closeModal" :projectId="projectData.projectId"
+        <add-project-task v-if="showModal" @close="closeModal" @taskAdded="handleTaskAdded" :projectId="projectData.projectId"
             class="fixed top-0 left-0 w-full h-full flex items-center justify-end px-40 bg-black bg-opacity-50 z-50" />
         <div class="h-460 w-532 px-12 text-slate-800 scrollable-container z-10">
             <div class="flex flex-col">
@@ -91,8 +117,8 @@ const daysLeft = (taskDate) => {
                         :style="{ border: `2px solid ${task.color}` }">
                         <div class="w-full flex justify-between items-center">
                             <div class="flex">
-                                <input type="checkbox" name="" id="" class="mr-2 cursor-pointer">
-                                <p v-if="task" class="text-sm">{{ task.taskName }}</p>
+                                <input type="checkbox" name="" id="" class="mr-2 cursor-pointer" v-model="task.status" @change="updateTaskStatus(task.taskId, task.status)">
+                                <p v-if="task" class="text-sm" :style="{ 'text-decoration': task.status ? 'line-through' : 'none' }">{{ task.taskName }}</p>
                             </div>
                             <div class="w-32 flex justify-between items-center">
                                 <p v-if="task" class="text-sm">
@@ -109,7 +135,7 @@ const daysLeft = (taskDate) => {
                             </div>
                         </div>
                         <div>
-                            <p v-if="task" class="text-sm">{{ task.taskDescription }}</p>
+                            <p v-if="task" class="text-sm" :style="{ 'text-decoration': task.status ? 'line-through' : 'none' }">{{ task.taskDescription }}</p>
                         </div>
                     </div>
                 </div>

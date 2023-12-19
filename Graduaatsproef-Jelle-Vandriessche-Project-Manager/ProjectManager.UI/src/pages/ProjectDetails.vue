@@ -20,7 +20,7 @@
         }
     };
 
-    const deleteTask = async (projectId) => {
+    const deleteProject = async (projectId) => {
         try {
             const response = await axios.delete(`http://localhost:5035/api/User/Project/${projectId}`);
             if (response.status === 204) {
@@ -54,7 +54,7 @@
                     </div>
 
                     <div>
-                        <button @click="() => deleteTask(projectData.projectId)">
+                        <button @click="() => deleteProject(projectData.projectId)">
                             <img :src="trash" alt="Folder Icon" class="w-4 h-4"/>
                         </button>
                     </div>

@@ -76,6 +76,19 @@ namespace ProjectManager.BL.Managers
             }
         }
 
+        // UPDATE
+        public void UpdateTaskStatus(int taskId, bool newStatus)
+        {
+            try
+            {
+                _repo.UpdateTaskStatus(taskId, newStatus);
+            }
+            catch (Exception ex)
+            {
+                throw new ProjectsException("UpdateTaskStatus", ex);
+            }
+        }
+
         // Exists
         public bool ProjectTasksExistsId(int taskId)
         {

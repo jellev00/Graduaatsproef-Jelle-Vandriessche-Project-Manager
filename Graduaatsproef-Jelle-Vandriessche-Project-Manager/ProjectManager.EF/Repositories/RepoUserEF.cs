@@ -94,6 +94,31 @@ namespace ProjectManager.EF.Repositories
             }
         }
 
+        public void UpdateTaskStatus(int taskId, bool newStatus)
+        {
+            try
+            {
+                // Retrieve the UserTask from the database
+                UserTasksEF taskToUpdate = ctx.UserTasks.Find(taskId);
+
+                if (taskToUpdate == null)
+                {
+                    // Handle the case where the task is not found in the database
+                    throw new RepoUserEFException($"Task with ID {taskId} not found.");
+                }
+
+                // Update the status
+                taskToUpdate.Status = newStatus;
+
+                // Save changes to the database
+                SaveAndClear();
+            }
+            catch (Exception ex)
+            {
+                throw new RepoUserEFException("UpdateTaskStatus", ex);
+            }
+        }
+
         public void AddUser(User user)
         {
             try

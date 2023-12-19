@@ -35,6 +35,26 @@
         }
     };
 
+    const updateTaskStatus = async (taskId, newStatus) => {
+        try {
+            const response = await axios.put(
+                `http://localhost:5035/api/User/UpdateTaskStatus/${taskId}`,
+                JSON.stringify(newStatus),
+                { headers: { 'Content-Type': 'application/json' } }
+            );
+
+            if (response.status === 200) {
+                // Update the local userData with the latest task statuses
+                fetchData();
+            } else {
+                alert(`Failed to update task status. ${response.status}`);
+            }
+        } catch (error) {
+            console.error('Error updating task status:', error);
+            alert('Error updating task status. See console for details.');
+        }
+    };
+
     const openModal = () => {
         showModal.value = true;
     };
@@ -61,7 +81,7 @@
                     <p class="text-slate-500">Tasks</p>
                     <div v-for="task in userData.userTasks" :key="task.taskId" class="flex items-center w-28 my-4">
                         <div v-if="task" class="w-2 h-2 rounded-full mr-5" :style="{ backgroundColor: task.color }"></div>
-                        <p v-if="task" class="text-sm">{{ task.taskName }}</p>
+                        <p v-if="task" class="text-sm" :style="{ 'text-decoration': task.status ? 'line-through' : 'none' }">{{ task.taskName }}</p>
                     </div>
                 </div>
                 <div class="flex justify-center">
@@ -78,8 +98,8 @@
                         <div v-if="task" class="w-510 h-160 rounded-2xl flex flex-col justify-around items-start p-3.5" :style="{ border: `2px solid ${task.color}` }">
                             <div class="w-full flex justify-between items-center">
                                 <div class="flex">
-                                    <input type="checkbox" name="" id="" class="mr-2 cursor-pointer">
-                                    <p v-if="task" class="text-sm">{{ task.taskName }}</p>
+                                    <input type="checkbox" name="" id="" class="mr-2 cursor-pointer" v-model="task.status" @change="updateTaskStatus(task.taskId, task.status)">
+                                    <p v-if="task" class="text-sm" :style="{ 'text-decoration': task.status ? 'line-through' : 'none' }">{{ task.taskName }}</p>
                                 </div>
                                 <div class="w-32 flex justify-between items-center">
                                     <p v-if="task" class="text-sm">
@@ -95,7 +115,7 @@
                                 </div>
                             </div>
                             <div>
-                                <p v-if="task" class="text-sm">{{ task.taskDescription }}</p>
+                                <p v-if="task" class="text-sm" :style="{ 'text-decoration': task.status ? 'line-through' : 'none' }">{{ task.taskDescription }}</p>
                             </div>
                         </div>
                     </div>

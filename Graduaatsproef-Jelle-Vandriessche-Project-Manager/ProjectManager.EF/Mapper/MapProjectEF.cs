@@ -26,7 +26,7 @@ namespace ProjectManager.EF.Mapper
                     {
                         Project project = new Project(pT.Project.Project_ID, user, pT.Project.Name, pT.Project.Description, pT.Project.Color);
 
-                        ProjectTasks projectTask = new ProjectTasks(pT.Project_Task_ID, project, pT.Task_Name, pT.Task_Description, pT.Color, pT.Date);
+                        ProjectTasks projectTask = new ProjectTasks(pT.Project_Task_ID, project, pT.Task_Name, pT.Task_Description, pT.Color, pT.Date, pT.Status);
 
                         projectTasks.Add(projectTask);
                     }
