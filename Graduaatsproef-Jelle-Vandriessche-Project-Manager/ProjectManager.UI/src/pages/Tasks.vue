@@ -101,12 +101,12 @@
                                     <input type="checkbox" name="" id="" class="mr-2 cursor-pointer" v-model="task.status" @change="updateTaskStatus(task.taskId, task.status)">
                                     <p v-if="task" class="text-sm" :style="{ 'text-decoration': task.status ? 'line-through' : 'none' }">{{ task.taskName }}</p>
                                 </div>
-                                <div class="w-32 flex justify-between items-center">
+                                <div class="w-36 flex justify-between items-center">
                                     <p v-if="task" class="text-sm">
                                     <!-- {{ task.date }} -->
                                     <span v-if="daysLeft(task.date) > 0">Days Left: {{ daysLeft(task.date) }}</span>
                                     <span v-else-if="daysLeft(task.date) < 0">Days Overdue: {{ -daysLeft(task.date) }}</span>
-                                    <span v-else>Today is the task date!</span>
+                                    <span v-else>Today is the day!</span>
                                     </p>
 
                                     <button @click="() => deleteTask(task.taskId)">

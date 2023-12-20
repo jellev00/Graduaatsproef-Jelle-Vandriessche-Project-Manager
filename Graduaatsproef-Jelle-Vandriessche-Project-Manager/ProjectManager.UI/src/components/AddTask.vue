@@ -1,5 +1,6 @@
 <script setup>
     import { defineProps, defineEmits } from 'vue';
+    import axios from 'axios';
 
     const props = defineProps(['close']);
     const emit = defineEmits();
@@ -18,32 +19,30 @@
 
     const addTask = async () => {
         try {
-            if (!task.taskName || !task.taskDescription || !task.color || !task.date){
+            if (!task.taskName || !task.taskDescription || !task.color || !task.date) {
                 alert('Please fill in all the required fields');
-            } else {
-                const response = await fetch('http://localhost:5035/api/User/AddTask/1', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(task),
-                });
+                return; 
+            }
 
-                if (response.ok) {
-                    // Successfully added the task, you can handle the response here if needed
-                    alert('Task added successfully');
-                    closeModal();
-                } else {
-                    // Handle error
-                    if (task.date < Date()) {
-                        alert('The date is in the past!');
-                    } else {
-                        alert('Failed to add task');
-                    }
-                }
+            const taskDate = new Date(task.date);
+            if (taskDate < new Date()) {
+                alert('The date is in the past!');
+                return;
+            }
+
+            const response = await axios.post('http://localhost:5035/api/User/AddTask/1', JSON.stringify(task), {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.status === 201) {
+                alert('Task added successfully');
+                closeModal();
+            } else {
+                alert('Failed to add task');
             }
         } catch (error) {
-            // Handle network error
             alert('Network error: ' + error.message);
         }
     };

@@ -1,5 +1,6 @@
 <script setup>
     import { defineProps, defineEmits } from 'vue';
+    import axios from 'axios';
 
     const props = defineProps(['close']);
     const emit = defineEmits();
@@ -14,17 +15,15 @@
         emit('close'); // Emit an event to notify the parent component to close the modal
     };
 
-    const addTask = async () => {
+    const addProject = async () => {
         try {
-            const response = await fetch('http://localhost:5035/api/User/AddProject/1', {
-                method: 'POST',
+            const response = await axios.post('http://localhost:5035/api/User/AddProject/1', JSON.stringify(project), {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(project),
             });
 
-            if (response.ok) {
+            if (response.status === 201) {
                 // Successfully added the project, you can handle the response here if needed
                 alert('Project added successfully');
                 closeModal();
@@ -60,7 +59,7 @@
                 </select>
             </div>
             <div class="flex justify-between">
-                <button @click="addTask" class="h-10 w-120 rounded-xl bg-customGreen text-white">Add</button>
+                <button @click="addProject" class="h-10 w-120 rounded-xl bg-customGreen text-white">Add</button>
                 <button @click="closeModal" class="w-120 h-10 rounded-lg border-2 border-customGreen text-customGreen">Cancel</button>
             </div>
         </div>
