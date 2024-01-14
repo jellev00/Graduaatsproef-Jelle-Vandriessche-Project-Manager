@@ -34,7 +34,7 @@ const addTask = async () => {
             return;
         }
 
-        const response = await axios.post(`http://localhost:5035/api/Project/AddTask/${project.projectId}`, JSON.stringify(task), {
+        const response = await axios.post(`http://localhost:5035/api/Project/${project.projectId}/Task`, JSON.stringify(task), {
             headers: {
                 'Content-Type': 'application/json',
             },

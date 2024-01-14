@@ -8,7 +8,7 @@ const route = useRoute();
 
 const fetchData = async () => {
   try {
-    const response = await axios.get('http://localhost:5035/api/User/ById/1');
+    const response = await axios.get('http://localhost:5035/api/User/id/1');
     userData.value = response.data;
   } catch (error) {
     console.error('Error fetching data:', error);

@@ -39,7 +39,7 @@ namespace ProjectManager.API.Controllers
         }
 
         // POST
-        [HttpPost("AddTask/{projectId}")]
+        [HttpPost("{projectId}/Task")]
         public ActionResult<ProjectTasksOutput> AddTaskToProject(int projectId, [FromBody] ProjectTasksInput tasksInput)
         {
             try
@@ -80,7 +80,7 @@ namespace ProjectManager.API.Controllers
         }
 
         // UPDATE
-        [HttpPut("UpdateTaskStatus/{taskId}")]
+        [HttpPut("Task/{taskId}")]
         public ActionResult UpdateTaskStatus(int taskId, [FromBody] bool newStatus)
         {
             try

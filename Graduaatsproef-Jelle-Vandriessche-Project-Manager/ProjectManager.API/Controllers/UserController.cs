@@ -19,7 +19,7 @@ namespace ProjectManager.API.Controllers
         }
 
         // GET
-        [HttpGet("ByEmail/{Email}")]
+        [HttpGet("email/{Email}")]
         public ActionResult<UserOutput> GetUserByEmail(string Email)
         {
             try
@@ -33,7 +33,7 @@ namespace ProjectManager.API.Controllers
             }
         }
 
-        [HttpGet("ById/{userId}")]
+        [HttpGet("id/{userId}")]
         public ActionResult<UserOutput> GetUserById(int userId)
         {
             try
@@ -76,7 +76,7 @@ namespace ProjectManager.API.Controllers
             }
         }
 
-        [HttpPost("AddTask/{userId}")]
+        [HttpPost("{userId}/Task")]
         public ActionResult<UserTasksOutput> AddTaskToUser(int userId, [FromBody] UserTasksInput tasksInput)
         {
             try
@@ -93,7 +93,7 @@ namespace ProjectManager.API.Controllers
             }
         }
 
-        [HttpPost("AddProject/{userId}")]
+        [HttpPost("{userId}/Project")]
         public ActionResult<ProjectOutput> AddProjectToUser(int userId, [FromBody] ProjectInput projectInput)
         {
             try
@@ -175,7 +175,7 @@ namespace ProjectManager.API.Controllers
         }
 
         // UPDATE
-        [HttpPut("UpdateTaskStatus/{taskId}")]
+        [HttpPut("Task/{taskId}")]
         public ActionResult UpdateTaskStatus(int taskId, [FromBody] bool newStatus)
         {
             try

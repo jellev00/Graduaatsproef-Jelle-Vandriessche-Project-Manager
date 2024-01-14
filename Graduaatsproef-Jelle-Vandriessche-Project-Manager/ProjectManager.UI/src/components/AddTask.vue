@@ -30,7 +30,7 @@
                 return;
             }
 
-            const response = await axios.post('http://localhost:5035/api/User/AddTask/1', JSON.stringify(task), {
+            const response = await axios.post('http://localhost:5035/api/User/1/Task', JSON.stringify(task), {
                 headers: {
                     'Content-Type': 'application/json',
                 },

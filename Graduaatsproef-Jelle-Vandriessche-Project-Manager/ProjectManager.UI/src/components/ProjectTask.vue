@@ -49,7 +49,7 @@ const deleteTask = async (taskId) => {
 const updateTaskStatus = async (taskId, newStatus) => {
     try {
         const response = await axios.put(
-            `http://localhost:5035/api/Project/UpdateTaskStatus/${taskId}`,
+            `http://localhost:5035/api/Project/Task/${taskId}`,
             JSON.stringify(newStatus),
             { headers: { 'Content-Type': 'application/json' } }
         );

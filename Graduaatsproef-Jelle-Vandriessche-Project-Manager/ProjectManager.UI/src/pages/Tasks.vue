@@ -11,7 +11,7 @@
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5035/api/User/ById/1');
+            const response = await axios.get('http://localhost:5035/api/User/id/1');
             userData.value = response.data;
             console.log("home ", response.data);
         } catch (error) {
@@ -38,7 +38,7 @@
     const updateTaskStatus = async (taskId, newStatus) => {
         try {
             const response = await axios.put(
-                `http://localhost:5035/api/User/UpdateTaskStatus/${taskId}`,
+                `http://localhost:5035/api/User/Task/${taskId}`,
                 JSON.stringify(newStatus),
                 { headers: { 'Content-Type': 'application/json' } }
             );
